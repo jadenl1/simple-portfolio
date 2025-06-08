@@ -108,7 +108,7 @@ function App() {
           <span className="page-header-links">
             <a href="https://www.linkedin.com/in/leonardjaden/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://github.com/jadenl1" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="mailto:jleonardSTEM2021@gmail.com" rel="noopener noreferrer">jleonardSTEM2021@gmail.com</a>
+            <a href="mailto:jleonardSTEM2021@gmail.com" rel="noopener noreferrer">Email</a>
           </span>
         </div>
         
@@ -168,8 +168,8 @@ function App() {
         </div>
 
         <hr className="section-divider"/>
-        <div className="page-section">
-            <p>If you would like to get in touch, feel free to reach out via email or connect with me on LinkedIn.</p>
+        <div className="page-section" id = "footer">
+            <p>If you would like to get in touch, feel free to reach out via email jleonardSTEM2021@gmail.com or connect with me on LinkedIn.</p>
             <p>Portfolio made with love by Jaden Leonard.</p>
         </div>
       </div>

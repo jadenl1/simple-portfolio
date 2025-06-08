@@ -1,29 +1,51 @@
+/* Navbar.css */
 .navbar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-     z-index: 10000;
-}
-.navbar{
-    padding: 15px 0;
-    width: 400px;
-    margin: 5px;
-    border-radius: 5px;
-    background-color: rgb(21, 21, 21);
-    display: flex;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  z-index: 10000;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
 }
 
-
-.navbar-links > a{
-    margin: 0 10px;
-    opacity: 0.7;
-    transition: 0.2s;
+.navbar {
+  padding: 15px 0;
+  width: 400px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: rgb(21, 21, 21);
+  display: flex;
+  justify-content: center;
 }
 
-.navbar-links > a:hover{
+.navbar-links > a {
+  margin: 0 10px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.navbar-links > a.active {
+  opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .navbar-container {
+    bottom: 0;
+    top: auto;
+  }
+  .navbar-container.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  .navbar {
+    width: 100%;
+    padding: 40px 0;
+  }
+
+  .navbar-links > a {
     opacity: 1;
+  }
 }

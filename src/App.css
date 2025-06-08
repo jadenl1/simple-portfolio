@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6{
 
 .photo-grid > img{
     width: 32.8%;
-    margin-bottom: 7px;
+    margin-bottom: 4px;
     border-radius: 4px;
     transition: 0.2s;
 }
@@ -163,4 +163,20 @@ h1, h2, h3, h4, h5, h6{
 .photo-grid > img:hover{
     transform: scale(1.1) rotate(3deg);
     z-index: 1000;
+}
+
+@media screen and (max-width: 800px) {
+    .page{
+        width: 90%;
+        margin-top: 70px;
+        margin-bottom: 150px;
+    }
+
+    .photo-grid > img:hover{
+        transform: none;
+    }
+
+    a{
+        opacity: 1;
+    }
 }
