@@ -2,6 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 
+import { LuFingerprint } from "react-icons/lu";
+import { FiBriefcase } from "react-icons/fi";
+import { MdOutlineFolderCopy } from "react-icons/md";
+import { PiMountainsBold } from "react-icons/pi";
+
 const sections = ['jaden','experience','projects','photos'];
 
 const Navbar = () => {
@@ -50,10 +55,10 @@ const Navbar = () => {
     <div className={`navbar-container ${!visible ? 'hidden' : ''}`}>
       <div className='navbar'>
         <div className="navbar-links">
-          <a href="#jaden" className={active === 'jaden' ? 'active' : ''}>Jaden</a>
-          <a href="#experience" className={active === 'experience' ? 'active' : ''}>Experience</a>
-          <a href="#projects" className={active === 'projects' ? 'active' : ''}>Projects</a>
-          <a href="#photos" className={active === 'photos' ? 'active' : ''}>Photos</a>
+          <a href="#jaden" className={active === 'jaden' ? 'active' : ''}><LuFingerprint className="nav-icon"/></a>
+          <a href="#experience" className={active === 'experience' ? 'active' : ''}><FiBriefcase className="nav-icon"/></a>
+          <a href="#projects" className={active === 'projects' ? 'active' : ''}><MdOutlineFolderCopy className="nav-icon"/></a>
+          <a href="#photos" className={active === 'photos' ? 'active' : ''}><PiMountainsBold className="nav-icon"/></a>
         </div>
       </div>
     </div>
