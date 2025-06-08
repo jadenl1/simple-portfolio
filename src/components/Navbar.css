@@ -1,0 +1,29 @@
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+     z-index: 10000;
+}
+.navbar{
+    padding: 15px 0;
+    width: 400px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(21, 21, 21);
+    display: flex;
+    justify-content: center;
+}
+
+
+.navbar-links > a{
+    margin: 0 10px;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.navbar-links > a:hover{
+    opacity: 1;
+}
