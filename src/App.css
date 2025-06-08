@@ -18,8 +18,10 @@ h1, h2, h3, h4, h5, h6{
     margin-right: 8px;
     transition: 0.2s;
 }
-.page-header-links > a:hover{
-    opacity: 1;
+@media (hover: hover) {
+    .page-header-links > a:hover{
+        opacity: 1;
+    }
 }
 .page-header-links > a::before{
     content: "[ ";
@@ -74,8 +76,10 @@ h1, h2, h3, h4, h5, h6{
     transition: 0.2s;
 }
 
-.experience-item:hover{
-    background-color: rgba(37, 37, 37, 0.329);
+@media (hover: hover) {
+    .experience-item:hover{
+        background-color: rgba(37, 37, 37, 0.329);
+    }
 }
 
 .experience-details{
@@ -107,8 +111,10 @@ h1, h2, h3, h4, h5, h6{
     transition: background-color 0.2s;
     cursor: pointer;
 }
-.project-item:hover{
-    background-color: rgba(37, 37, 37, 0.329);
+@media (hover: hover) {
+    .project-item:hover{
+        background-color: rgba(37, 37, 37, 0.329);
+    }
 }
 .project-icon{
     margin-right: 10px;
@@ -142,8 +148,10 @@ h1, h2, h3, h4, h5, h6{
     opacity: 0.7;
     margin: 4px 0;
 }
-.project-details > a:hover{
-    opacity: 1;
+@media (hover: hover) {
+    .project-details > a:hover{
+        opacity: 1;
+    }
 }
 
 .photo-grid{
@@ -160,7 +168,17 @@ h1, h2, h3, h4, h5, h6{
     transition: 0.2s;
 }
 
-.photo-grid > img:hover{
-    transform: scale(1.1) rotate(3deg);
-    z-index: 1000;
+@media (hover: hover) {
+    .photo-grid > img:hover{
+        transform: scale(1.1) rotate(3deg);
+        z-index: 1000;
+    }
+}
+
+@media (max-width: 600px) {
+    .page{
+        width: 95vw;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
 }
