@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/simple-portfolio/static/css/main.f059254a.css",
+    "main.js": "/simple-portfolio/static/js/main.f90bd0d8.js",
+    "static/media/mp-boat.JPG": "/simple-portfolio/static/media/mp-boat.14d78d109ed74b6e4a6e.JPG",
+    "static/media/mp-greatfalls.jpg": "/simple-portfolio/static/media/mp-greatfalls.0cb2f59fcf3ac337244e.jpg",
+    "static/media/mp-garden.jpg": "/simple-portfolio/static/media/mp-garden.66cf02998d140d40aa66.jpg",
+    "static/media/mp-greenhouse.JPG": "/simple-portfolio/static/media/mp-greenhouse.021c8964b980e2b411b5.JPG",
+    "static/media/mp-sanfran.JPG": "/simple-portfolio/static/media/mp-sanfran.f5abd64a7d4820814dce.JPG",
+    "static/media/mp-la.JPG": "/simple-portfolio/static/media/mp-la.8ba014a14bfe2f3d5bf5.JPG",
+    "static/media/hackumbc.png": "/simple-portfolio/static/media/hackumbc.0d8db3bd4e59a6edaaa6.png",
+    "index.html": "/simple-portfolio/index.html",
+    "main.f059254a.css.map": "/simple-portfolio/static/css/main.f059254a.css.map",
+    "main.f90bd0d8.js.map": "/simple-portfolio/static/js/main.f90bd0d8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f059254a.css",
+    "static/js/main.f90bd0d8.js"
+  ]
+}
