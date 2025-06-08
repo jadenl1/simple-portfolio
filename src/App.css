@@ -9,6 +9,28 @@
     }
 }
 
+@keyframes fadeUp2{
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp3 {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 0.1;
+        transform: translateY(0);
+    }
+}
+
 /* Layout */
 .app {
   display: flex;
@@ -45,15 +67,29 @@ p {
     animation-fill-mode: forwards;
 }
 
-#a1{
+.aa{
+    opacity: 0;
+    animation-name: fadeUp2;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.aaa{
+    opacity: 0;
+    animation-name: fadeUp3;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.a1{
     animation-delay: 0s;
 }
 
-#a2{
+.a2{
     animation-delay: 0.1s;
 }
 
-#a3{
+.a3{
     animation-delay: 0.2s;
 }
 

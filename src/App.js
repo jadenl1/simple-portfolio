@@ -158,10 +158,10 @@ function App() {
         <Navbar/>
       <div className="page">
         <div className="page-header">
-          <div className="section-title a" id="a1"><LuFingerprint className='icon-inline'/><h1>Jaden Leonard</h1></div>
-          <p className="a" id="a2">Developer from Maryland<br/>Computer Science B.S @ University of Maryland, College Park<br/>Studying Computer Science M.S @ Bowie State University, expected Spring 2027</p>
+          <div className="section-title a a1"><LuFingerprint className='icon-inline'/><h1>Jaden Leonard</h1></div>
+          <p className="aa a2">Developer from Maryland<br/>Computer Science B.S @ University of Maryland, College Park<br/>Studying Computer Science M.S @ Bowie State University, expected Spring 2027</p>
 
-            <span className="page-header-links a" id="a3">
+            <span className="page-header-links a a3">
                 <a className="page-header-link" href="https://www.linkedin.com/in/leonardjaden/" target="_blank" rel="noopener noreferrer">
                     <span className="page-header-link-text">LinkedIn</span>
                     <span className="link-icon"><GoArrowUpRight/></span>
@@ -177,8 +177,8 @@ function App() {
             </span>
         </div>
         
-        <hr className="section-divider" id="experience"/>
-        <div className="page-section a a4">
+        <hr className="section-divider aaa a4" id="experience"/>
+        <div className="page-section a a5">
           <div className="section-title"><FiBriefcase className='icon-inline'/><h1>Experience</h1></div>
           <ul className="experience-grid">
                 {experiences.map((exp, idx) => (
