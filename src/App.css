@@ -1,3 +1,14 @@
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Layout */
 .app {
   display: flex;
@@ -25,6 +36,33 @@ h1 {
 p {
   font-size: 18px;
   opacity: 0.5;
+}
+
+.a {
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+#a1{
+    animation-delay: 0s;
+}
+
+#a2{
+    animation-delay: 0.1s;
+}
+
+#a3{
+    animation-delay: 0.2s;
+}
+
+.a4{
+    animation-delay: 0.3s;
+}
+
+.a5 {
+    animation-delay: 0.4s;
 }
 
 /* Header Links */

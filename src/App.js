@@ -25,7 +25,8 @@ const skillColorMap = {
   'Scikit-Surprise': { bg: 'rgba(123, 31, 162, 0.2)', text: '#F0EBFA' },
   'Google Cloud': { bg: 'rgba(26, 115, 232, 0.2)', text: '#E0F3FE' },
   'NLP': { bg: 'rgba(194, 24, 91, 0.2)', text: '#FFE6F0' },
-  'Github Pages': { bg: 'rgba(26, 115, 232, 0.2)', text: '#E0F3FE' },
+  'Bots': { bg: 'rgba(90, 90, 255, 0.2)', text: '#DDE3FF' },         // soft blueish robot tone
+  'LLM': { bg: 'rgba(100, 30, 200, 0.2)', text: '#E5D9FF' },         // violet tone for AI/LLM
 };
 
 const Tag = ({ label }) => {
@@ -111,12 +112,22 @@ function App() {
       )
     },
     {
-      title: 'Startup, NitesOut: Collaborative Filtering Event Discovery Engine',
+      title: 'Cofounder, NitesOut: Collaborative Filtering Event Discovery Engine',
       skills: 'Scikit-Surprise, Python, Google Cloud',
       details: (
         <>
           <a href='https://www.nitesout.info/' target='_blank' rel='noopener noreferrer'>Visit project ➝</a>
           <p>Cofounded and led both creative and full-stack development for NitesOut, a personalized event discovery web app. Implemented & deployed collaborative-filtering recommender (Pandas, Scikit-Surprise) via Django hosted on Google Cloud. Reduced API round-trip latency by 35% by routing lightweight requests (Stripe, Auth, database queries) through a dedicated Express service and handling compute-intensive tasks (user feed generation) through Django. Organized 15 branded events (500–1,000 attendees each), generating $95k in revenue.<br/>Developed Jul 2023 - Oct 2024.</p>
+        </>
+      )
+    },
+    {
+      title: 'Founder, Teryn: AI Solutions Consulting for Local Business',
+      skills: 'Bots, LLM, AWS',
+      details: (
+        <>
+            <a href='https://teryn.app/' target='_blank' rel='noopener noreferrer'>Visit project ➝</a>
+          <p>Tech consulting company that builds custom AI-driven solutions to help local businesses automate operations, boost customer engagement, and scale intelligently. Specializes in deploying lightweight, tailored tools powered by LLMs, bots, and data-driven pipelines.<br/>Developed May 2025.</p>
         </>
       )
     },
@@ -147,10 +158,10 @@ function App() {
         <Navbar/>
       <div className="page">
         <div className="page-header">
-          <div className="section-title"><LuFingerprint className='icon-inline'/><h1>Jaden Leonard</h1></div>
-          <p>Developer from Maryland<br/>Computer Science B.S @ University of Maryland, College Park<br/>Studying Computer Science M.S @ Bowie State University, expected Spring 2027</p>
+          <div className="section-title a" id="a1"><LuFingerprint className='icon-inline'/><h1>Jaden Leonard</h1></div>
+          <p className="a" id="a2">Developer from Maryland<br/>Computer Science B.S @ University of Maryland, College Park<br/>Studying Computer Science M.S @ Bowie State University, expected Spring 2027</p>
 
-            <span className="page-header-links">
+            <span className="page-header-links a" id="a3">
                 <a className="page-header-link" href="https://www.linkedin.com/in/leonardjaden/" target="_blank" rel="noopener noreferrer">
                     <span className="page-header-link-text">LinkedIn</span>
                     <span className="link-icon"><GoArrowUpRight/></span>
@@ -167,7 +178,7 @@ function App() {
         </div>
         
         <hr className="section-divider" id="experience"/>
-        <div className="page-section">
+        <div className="page-section a a4">
           <div className="section-title"><FiBriefcase className='icon-inline'/><h1>Experience</h1></div>
           <ul className="experience-grid">
                 {experiences.map((exp, idx) => (
