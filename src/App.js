@@ -7,6 +7,7 @@ import { LuFingerprint } from "react-icons/lu";
 import { FiBriefcase } from "react-icons/fi";
 import { MdOutlineFolderCopy } from "react-icons/md";
 import { PiMountainsBold } from "react-icons/pi";
+import { HiOutlineLightningBolt } from "react-icons/hi";
 
 import { GoArrowUpRight } from "react-icons/go";
 
@@ -58,6 +59,29 @@ function App() {
   const [openProject, setOpenProject] = useState(null);
   const toggleExperience = idx => setOpenExperience(openExperience === idx ? null : idx);
   const toggleProject = idx => setOpenProject(openProject === idx ? null : idx);
+
+    const startups = [
+        {
+        company: 'NitesOut',
+        role: 'Cofounder, Creative + Technical Director',
+        details: (
+            <>
+            <p>Aug 2022 – Current, XXk revenue</p>
+            <p>https://www.nitesout.info/</p>
+            </>
+        )
+        },
+        {
+        company: 'Teryn',
+        role: 'Founder, AI Solutions Consulting',
+        details: (
+            <>
+            <p>May 2025 – Current, Xk revenue</p>
+            <p>https://teryn.app/</p>
+            </>
+        )
+        }
+    ];
 
   const experiences = [
     {
@@ -196,6 +220,27 @@ function App() {
                 ))}
             </ul>
         </div>
+
+        <hr className="section-divider aaa a4" id="experience"/>
+        <div className="page-section a a5">
+          <div className="section-title"><HiOutlineLightningBolt className='icon-inline'/><h1>Startups</h1></div>
+          <ul className="experience-grid">
+                {startups.map((exp, idx) => (
+                    <li key={idx} className="experience-entry">
+                    <div className="experience-meta">
+                        <p className="experience-title">
+                            {exp.role} @ {exp.company}
+                        </p>
+                        <p className="experience-dates">{exp.details.props.children[0].props.children}</p>
+                    </div>
+                    <div className="experience-description">
+                        <p>{exp.details.props.children[1].props.children}</p>
+                    </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+
 
         <hr className="section-divider" id="projects"/>
         <div className="page-section">
