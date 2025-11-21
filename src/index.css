@@ -56,16 +56,32 @@ a {
 
 /* Full-viewport animated overlay */
 body::before {
-	content: "";
-	position: fixed;
-	inset: 0;
-	background-image: url("./assets/b2.png");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	opacity: 0;
-	animation: bg-fade 20s ease-in-out infinite;
-	pointer-events: none; /* keep page interactive */
-	z-index: 0; /* sits below #root content */
-	will-change: opacity;
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("./assets/b2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: bg-fade 20s ease-in-out infinite;
+    pointer-events: none; /* keep page interactive */
+    z-index: 0; /* sits below #root content */
+    will-change: opacity;
+}
+
+/* Disable animated backgrounds on mobile (solid black) */
+@media screen and (max-width: 850px) {
+    html {
+        background-image: none !important;
+        background-attachment: scroll !important;
+        background-color: #000 !important;
+    }
+
+    body::before {
+        content: none !important;
+        animation: none !important;
+        background: none !important;
+        opacity: 1 !important;
+    }
 }

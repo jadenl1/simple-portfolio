@@ -8,6 +8,7 @@ import { FiBriefcase } from "react-icons/fi";
 import { MdOutlineFolderCopy } from "react-icons/md";
 import { PiMountainsBold } from "react-icons/pi";
 import { HiOutlineLightningBolt } from "react-icons/hi";
+import { TbHeartHandshake } from "react-icons/tb";
 
 import { GoArrowUpRight } from "react-icons/go";
 
@@ -32,6 +33,16 @@ const skillColorMap = {
 
 const Tag = ({ label }) => {
 	const { bg, text } = skillColorMap[label.trim()] || { bg: "#E0E0E0", text: "#333" };
+
+    // Derive a very subtle border color from the background rgba if available
+    let borderColor = "rgba(255, 255, 255, 0.08)";
+	if (typeof bg === "string" && bg.startsWith("rgba(")) {
+        borderColor = bg.replace(
+            /rgba\((\d+),\s*(\d+),\s*(\d+),\s*[^)]+\)/,
+            "rgba($1, $2, $3, 0.18)"
+        );
+	}
+
 	return (
 		<span
 			style={{
@@ -46,10 +57,11 @@ const Tag = ({ label }) => {
 				alignItems: "center",
 				marginRight: "3px",
 				marginBottom: "3px",
-			}}
-		>
-			{label}
-		</span>
+                border: `0.5px solid ${borderColor}`,
+            }}
+        >
+            {label}
+        </span>
 	);
 };
 
@@ -65,7 +77,7 @@ function App() {
 			role: "Cofounder, Creative + Technical Director",
 			details: (
 				<>
-					<p>Aug 2022 – Current, XXk revenue</p>
+					<p>Aug 2022 – Current, $XXk revenue</p>
 					<p>https://www.nitesout.info/</p>
 				</>
 			),
@@ -75,7 +87,7 @@ function App() {
 			role: "Founder, AI Solutions Consulting",
 			details: (
 				<>
-					<p>May 2025 – Current, Xk revenue</p>
+					<p>May 2025 – Oct 2025, $Xk revenue</p>
 					<p>https://teryn.app/</p>
 				</>
 			),
@@ -84,16 +96,12 @@ function App() {
 
 	const experiences = [
 		{
-			company: "Bitcamp",
-			role: "Organizer, Software Team",
+			company: "Microsoft",
+			role: "Software Engineer Intern",
 			details: (
 				<>
-					<p>Nov 2022 – Sept 2024</p>
-					<p>
-						Deployed Vue3/Nuxt3 judging interface integrated with AWS Lambda and
-						Docker-based CI/CD, streamlining project review judges & cutting deployment
-						time.
-					</p>
+					<p>May 2026 – Aug 2026</p>
+					<p>Windows + Devices Experience & Design Team, Incoming Summer 2026</p>
 				</>
 			),
 		},
@@ -106,6 +114,35 @@ function App() {
 					<p>
 						Built unsupervised CNN in Python (TensorFlow & Keras) that clustered 2,000
 						galaxy radial maps into 6 classes with 93% silhouette score.
+					</p>
+				</>
+			),
+		},
+	];
+
+	const volunteer = [
+		{
+			company: "UMD Startup Shell",
+			role: "Fellow",
+			details: (
+				<>
+					<p>Feb 2023 – May 2025</p>
+					<p>
+						University incubator, worked on NitesOut. Recieved Dingman eFund Grant for
+						startup NitesOut.
+					</p>
+				</>
+			),
+		},
+		{
+			company: "Bitcamp",
+			role: "Organizer, Software Team",
+			details: (
+				<>
+					<p>Nov 2022 – Sept 2024</p>
+					<p>
+						AWS migration + deployed internal processes focused on increasing judge &
+						organizer retention.
 					</p>
 				</>
 			),
@@ -300,10 +337,11 @@ function App() {
 						</a>
 						<a
 							className="page-header-link"
-							href="mailto:jleonardSTEM2021@gmail.com"
+							href="https://drive.google.com/file/d/1pVjeoFd5v5BYOREEk7XZ3qC7295Jl3zV/view?usp=sharing"
+							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span className="page-header-link-text">Email</span>
+							<span className="page-header-link-text">Resume</span>
 							<span className="link-icon">
 								<GoArrowUpRight />
 							</span>
@@ -361,6 +399,31 @@ function App() {
 					</ul>
 				</div>
 
+				<hr className="section-divider aaa a4" id="experience" />
+				<div className="page-section a a5">
+					<div className="section-title">
+						<TbHeartHandshake className="icon-inline" />
+						<h1>Volunteer & Extracurricular</h1>
+					</div>
+					<ul className="experience-grid">
+						{volunteer.map((exp, idx) => (
+							<li key={idx} className="experience-entry">
+								<div className="experience-meta">
+									<p className="experience-title">
+										{exp.role} @ {exp.company}
+									</p>
+									<p className="experience-dates">
+										{exp.details.props.children[0].props.children}
+									</p>
+								</div>
+								<div className="experience-description">
+									<p>{exp.details.props.children[1].props.children}</p>
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
+
 				<hr className="section-divider" id="projects" />
 				<div className="page-section">
 					<div className="section-title">
@@ -400,12 +463,37 @@ function App() {
 						<h1>My Favorite Photos</h1>
 					</div>
 					<div className="photo-grid">
-						<img src={require("./assets/myphotos/mp-boat.JPG")} />
-						<img src={require("./assets/myphotos/mp-sanfran.JPG")} />
-						<img src={require("./assets/myphotos/mp-la.JPG")} />
-						<img src={require("./assets/myphotos/mp-greenhouse.JPG")} />
-						<img src={require("./assets/myphotos/mp-greatfalls.jpg")} />
-						<img src={require("./assets/myphotos/mp-garden.jpg")} />
+						{[
+							{
+								src: require("./assets/myphotos/mp-boat.JPG"),
+								label: "San Francisco, CA",
+							},
+							{
+								src: require("./assets/myphotos/mp-sanfran.JPG"),
+								label: "San Francisco, CA",
+							},
+							{
+								src: require("./assets/myphotos/mp-la.JPG"),
+								label: "Los Angeles, CA",
+							},
+							{
+								src: require("./assets/myphotos/mp-greenhouse.JPG"),
+								label: "Kailasa Temple, India",
+							},
+							{
+								src: require("./assets/myphotos/mp-greatfalls.jpg"),
+								label: "Roma, Italy",
+							},
+							{
+								src: require("./assets/myphotos/mp-garden.jpg"),
+								label: "Annapolis, MD",
+							},
+						].map((p, i) => (
+							<div className="photo-card" key={i}>
+								<img src={p.src} alt={p.label} />
+								<span className="photo-tag">{p.label}</span>
+							</div>
+						))}
 					</div>
 				</div>
 
