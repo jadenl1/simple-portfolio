@@ -15,12 +15,6 @@ html {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 	box-sizing: border-box;
-	/* Base background image */
-	background-image: url("./assets/bg1.png");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
 }
 
 p {
@@ -48,10 +42,20 @@ a {
 	}
 }
 
+/* One-time fade-in for the base wallpaper on page load */
+@keyframes wallpaper-fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 /* Ensure app content sits above the animated overlay */
 #root {
 	position: relative;
-	z-index: 1;
+	z-index: 2; /* above background layers */
 }
 
 /* Full-viewport animated overlay */
@@ -66,7 +70,23 @@ body::before {
     opacity: 0;
     animation: bg-fade 20s ease-in-out infinite;
     pointer-events: none; /* keep page interactive */
-    z-index: 0; /* sits below #root content */
+    z-index: 1; /* sits above base wallpaper, below content */
+    will-change: opacity;
+}
+
+/* Base wallpaper layer that fades in once on load */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("./assets/bg1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: wallpaper-fade-in 1000ms ease-out forwards;
+    pointer-events: none;
+    z-index: 0; /* bottom-most visual layer */
     will-change: opacity;
 }
 
@@ -79,6 +99,13 @@ body::before {
     }
 
     body::before {
+        content: none !important;
+        animation: none !important;
+        background: none !important;
+        opacity: 1 !important;
+    }
+
+    body::after {
         content: none !important;
         animation: none !important;
         background: none !important;
