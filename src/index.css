@@ -90,13 +90,25 @@ body::after {
     will-change: opacity;
 }
 
-/* Keep animated backgrounds on mobile as well */
+/* Disable animated backgrounds on mobile (solid black) */
 @media screen and (max-width: 850px) {
-    /* Ensure smooth scrolling and keep dark fallback */
     html {
-        background-color: #000;
-        background-attachment: scroll;
+        background-image: none !important;
+        background-attachment: scroll !important;
+        background-color: #000 !important;
     }
 
-    /* No overrides: allow ::before/::after layers and animations on mobile */
+    body::before {
+        content: none !important;
+        animation: none !important;
+        background: none !important;
+        opacity: 1 !important;
+    }
+
+    body::after {
+        content: none !important;
+        animation: none !important;
+        background: none !important;
+        opacity: 1 !important;
+    }
 }
