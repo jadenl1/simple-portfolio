@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 import { FaFolder } from "react-icons/fa";
@@ -27,6 +27,17 @@ function App() {
 	const [openProject, setOpenProject] = useState(null);
 	const toggleExperience = (idx) => setOpenExperience(openExperience === idx ? null : idx);
 	const toggleProject = (idx) => setOpenProject(openProject === idx ? null : idx);
+	const photoTrackRef = useRef(null);
+
+	// Some browsers occasionally fail to start an infinite CSS animation on
+	// first paint. Restarting it on mount guarantees the scroll begins.
+	useEffect(() => {
+		const track = photoTrackRef.current;
+		if (!track) return;
+		track.style.animation = "none";
+		void track.offsetHeight;
+		track.style.animation = "";
+	}, []);
 
 	return (
 		<div className="app" id="jaden">
@@ -241,7 +252,7 @@ function App() {
 							<h1>Some of My Photos</h1>
 						</div>
 						<div className="photo-carousel">
-							<div className="photo-track">
+							<div className="photo-track" ref={photoTrackRef}>
 								{[...photos, ...photos].map((p, i) => (
 									<div className="photo-card" key={i}>
 										<img src={p.src} alt={p.label} />

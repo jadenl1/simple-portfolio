@@ -254,6 +254,7 @@ p {
 	gap: 4px;
 	width: max-content;
 	animation: photo-scroll 40s linear infinite;
+	will-change: transform;
 }
 
 @keyframes photo-scroll {
