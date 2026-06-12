@@ -10,7 +10,8 @@ code {
 }
 
 html {
-	background-color: rgb(6, 6, 6);
+	background-color: #0a0a0a;
+	--bg-color: #0a0a0a;
 	color: rgb(255, 255, 255);
 	overflow-x: hidden;
 	scroll-behavior: smooth;
@@ -18,97 +19,15 @@ html {
 }
 
 p {
-	font-weight: 300;
+	font-weight: 400;
 	line-height: 1.5;
 }
 
 h1 {
-	font-weight: 400;
+	font-weight: 500;
 }
 
 a {
 	text-decoration: none;
 	color: white;
-}
-
-/* Layer b2.png above bg1.png and fade it in/out */
-@keyframes bg-fade {
-	0%,
-	100% {
-		opacity: 0;
-	}
-	50% {
-		opacity: 1;
-	}
-}
-
-/* One-time fade-in for the base wallpaper on page load */
-@keyframes wallpaper-fade-in {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-/* Ensure app content sits above the animated overlay */
-#root {
-	position: relative;
-	z-index: 2; /* above background layers */
-}
-
-/* Full-viewport animated overlay */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("./assets/b2.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    animation: bg-fade 20s ease-in-out infinite;
-    pointer-events: none; /* keep page interactive */
-    z-index: 1; /* sits above base wallpaper, below content */
-    will-change: opacity;
-}
-
-/* Base wallpaper layer that fades in once on load */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("./assets/bg1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    animation: wallpaper-fade-in 1000ms ease-out forwards;
-    pointer-events: none;
-    z-index: 0; /* bottom-most visual layer */
-    will-change: opacity;
-}
-
-/* Disable animated backgrounds on mobile (solid black) */
-@media screen and (max-width: 850px) {
-    html {
-        background-image: none !important;
-        background-attachment: scroll !important;
-        background-color: #000 !important;
-    }
-
-    body::before {
-        content: none !important;
-        animation: none !important;
-        background: none !important;
-        opacity: 1 !important;
-    }
-
-    body::after {
-        content: none !important;
-        animation: none !important;
-        background: none !important;
-        opacity: 1 !important;
-    }
 }

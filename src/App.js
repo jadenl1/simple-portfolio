@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./App.css";
 import { FaFolder } from "react-icons/fa";
 import Navbar from "./components/Navbar";
@@ -34,13 +35,13 @@ const skillColorMap = {
 const Tag = ({ label }) => {
 	const { bg, text } = skillColorMap[label.trim()] || { bg: "#E0E0E0", text: "#333" };
 
-    // Derive a very subtle border color from the background rgba if available
-    let borderColor = "rgba(255, 255, 255, 0.08)";
+	// Derive a very subtle border color from the background rgba if available
+	let borderColor = "rgba(255, 255, 255, 0.08)";
 	if (typeof bg === "string" && bg.startsWith("rgba(")) {
-        borderColor = bg.replace(
-            /rgba\((\d+),\s*(\d+),\s*(\d+),\s*[^)]+\)/,
-            "rgba($1, $2, $3, 0.18)"
-        );
+		borderColor = bg.replace(
+			/rgba\((\d+),\s*(\d+),\s*(\d+),\s*[^)]+\)/,
+			"rgba($1, $2, $3, 0.18)",
+		);
 	}
 
 	return (
@@ -57,13 +58,26 @@ const Tag = ({ label }) => {
 				alignItems: "center",
 				marginRight: "3px",
 				marginBottom: "3px",
-                border: `0.5px solid ${borderColor}`,
-            }}
-        >
-            {label}
-        </span>
+				border: `0.5px solid ${borderColor}`,
+			}}
+		>
+			{label}
+		</span>
 	);
 };
+
+const FadeInSection = ({ children, className = "", delay = 0.15, ...rest }) => (
+	<motion.div
+		className={className}
+		initial={{ opacity: 0, y: 20 }}
+		whileInView={{ opacity: 1, y: 0 }}
+		viewport={{ once: true, amount: 0.1 }}
+		transition={{ duration: 0.6, ease: "easeOut", delay }}
+		{...rest}
+	>
+		{children}
+	</motion.div>
+);
 
 function App() {
 	const [openExperience, setOpenExperience] = useState(null);
@@ -160,6 +174,15 @@ function App() {
 				</>
 			),
 		},
+	];
+
+	const photos = [
+		{ src: require("./assets/myphotos/mp-boat.JPG"), label: "San Francisco, CA" },
+		{ src: require("./assets/myphotos/mp-sanfran.JPG"), label: "San Francisco, CA" },
+		{ src: require("./assets/myphotos/mp-la.JPG"), label: "Los Angeles, CA" },
+		{ src: require("./assets/myphotos/mp-greenhouse.JPG"), label: "Kailasa Temple, India" },
+		{ src: require("./assets/myphotos/mp-greatfalls.jpg"), label: "Roma, Italy" },
+		{ src: require("./assets/myphotos/mp-garden.jpg"), label: "Annapolis, MD" },
 	];
 
 	const projects = [
@@ -300,19 +323,33 @@ function App() {
 			{/* <Navbar /> */}
 			<div className="page">
 				<div className="page-header">
-					<div className="section-title a a1">
+					<motion.div
+						className="section-title"
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
+					>
 						<LuFingerprint className="icon-inline" />
-						<h1>Jaden Leonard</h1>
-					</div>
-					<p className="aa a2">
+						<h1>Jaden Leonard — SWE Intern @ Microsoft</h1>
+					</motion.div>
+					<motion.p
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 0.5, y: 0 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+					>
 						Developer from Maryland
 						<br />
 						Computer Science B.S @ University of Maryland, College Park
 						<br />
-						Studying Computer Science M.S @ Bowie State University, expected Spring 2027
-					</p>
+						Computer Science M.S @ Bowie State University, expected Spring 2027
+					</motion.p>
 
-					<span className="page-header-links a a3">
+					<motion.span
+						className="page-header-links"
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+					>
 						<a
 							className="page-header-link"
 							href="https://www.linkedin.com/in/leonardjaden/"
@@ -346,168 +383,171 @@ function App() {
 								<GoArrowUpRight />
 							</span>
 						</a>
-					</span>
+					</motion.span>
 				</div>
 
-				<hr className="section-divider aaa a4" id="experience" />
-				<div className="page-section a a5">
-					<div className="section-title">
-						<FiBriefcase className="icon-inline" />
-						<h1>Experience</h1>
+				<motion.hr
+					className="section-divider"
+					id="experience"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 0.1, y: 0 }}
+					transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}
+				/>
+				<FadeInSection delay={0.3}>
+					<div className="page-section">
+						<div className="section-title">
+							<FiBriefcase className="icon-inline" />
+							<h1>Experience</h1>
+						</div>
+						<ul className="experience-grid">
+							{experiences.map((exp, idx) => (
+								<li key={idx} className="experience-entry">
+									<div className="experience-meta">
+										<p className="experience-title">
+											{exp.role} @ {exp.company}
+										</p>
+										<p className="experience-dates">
+											{exp.details.props.children[0].props.children}
+										</p>
+									</div>
+									<div className="experience-description">
+										<p>{exp.details.props.children[1].props.children}</p>
+									</div>
+								</li>
+							))}
+						</ul>
 					</div>
-					<ul className="experience-grid">
-						{experiences.map((exp, idx) => (
-							<li key={idx} className="experience-entry">
-								<div className="experience-meta">
-									<p className="experience-title">
-										{exp.role} @ {exp.company}
-									</p>
-									<p className="experience-dates">
-										{exp.details.props.children[0].props.children}
-									</p>
-								</div>
-								<div className="experience-description">
-									<p>{exp.details.props.children[1].props.children}</p>
-								</div>
-							</li>
-						))}
-					</ul>
-				</div>
+				</FadeInSection>
 
-				<hr className="section-divider aaa a4" id="experience" />
-				<div className="page-section a a5">
-					<div className="section-title">
-						<HiOutlineLightningBolt className="icon-inline" />
-						<h1>Startups</h1>
+				<motion.hr
+					className="section-divider"
+					id="experience"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 0.1, y: 0 }}
+					transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
+				/>
+				<FadeInSection delay={0.4}>
+					<div className="page-section">
+						<div className="section-title">
+							<HiOutlineLightningBolt className="icon-inline" />
+							<h1>Startups</h1>
+						</div>
+						<ul className="experience-grid">
+							{startups.map((exp, idx) => (
+								<li key={idx} className="experience-entry">
+									<div className="experience-meta">
+										<p className="experience-title">
+											{exp.role} @ {exp.company}
+										</p>
+										<p className="experience-dates">
+											{exp.details.props.children[0].props.children}
+										</p>
+									</div>
+									<div className="experience-description">
+										<p>{exp.details.props.children[1].props.children}</p>
+									</div>
+								</li>
+							))}
+						</ul>
 					</div>
-					<ul className="experience-grid">
-						{startups.map((exp, idx) => (
-							<li key={idx} className="experience-entry">
-								<div className="experience-meta">
-									<p className="experience-title">
-										{exp.role} @ {exp.company}
-									</p>
-									<p className="experience-dates">
-										{exp.details.props.children[0].props.children}
-									</p>
-								</div>
-								<div className="experience-description">
-									<p>{exp.details.props.children[1].props.children}</p>
-								</div>
-							</li>
-						))}
-					</ul>
-				</div>
+				</FadeInSection>
 
-				<hr className="section-divider aaa a4" id="experience" />
-				<div className="page-section a a5">
-					<div className="section-title">
-						<TbHeartHandshake className="icon-inline" />
-						<h1>Volunteer & Extracurricular</h1>
+				<hr className="section-divider" id="experience" />
+				<FadeInSection>
+					<div className="page-section">
+						<div className="section-title">
+							<TbHeartHandshake className="icon-inline" />
+							<h1>Volunteer & Extracurricular</h1>
+						</div>
+						<ul className="experience-grid">
+							{volunteer.map((exp, idx) => (
+								<li key={idx} className="experience-entry">
+									<div className="experience-meta">
+										<p className="experience-title">
+											{exp.role} @ {exp.company}
+										</p>
+										<p className="experience-dates">
+											{exp.details.props.children[0].props.children}
+										</p>
+									</div>
+									<div className="experience-description">
+										<p>{exp.details.props.children[1].props.children}</p>
+									</div>
+								</li>
+							))}
+						</ul>
 					</div>
-					<ul className="experience-grid">
-						{volunteer.map((exp, idx) => (
-							<li key={idx} className="experience-entry">
-								<div className="experience-meta">
-									<p className="experience-title">
-										{exp.role} @ {exp.company}
-									</p>
-									<p className="experience-dates">
-										{exp.details.props.children[0].props.children}
-									</p>
-								</div>
-								<div className="experience-description">
-									<p>{exp.details.props.children[1].props.children}</p>
-								</div>
-							</li>
-						))}
-					</ul>
-				</div>
+				</FadeInSection>
 
 				<hr className="section-divider" id="projects" />
-				<div className="page-section">
-					<div className="section-title">
-						<MdOutlineFolderCopy className="icon-inline" />
-						<h1>Projects</h1>
-					</div>
-					<ul className="experience-list">
-						{projects.map((proj, idx) => (
-							<li key={idx} className="project-item">
-								<div className="project-header" onClick={() => toggleProject(idx)}>
-									<GoArrowUpRight className="project-icon" />
-									<div className="project-info">
-										<span className="project-title">{proj.title}</span>
-										{proj.skills.split(",").map((skill) => (
-											<span>
-												<Tag key={skill} label={skill.trim()} />
-											</span>
-										))}
+				<FadeInSection>
+					<div className="page-section">
+						<div className="section-title">
+							<MdOutlineFolderCopy className="icon-inline" />
+							<h1>Projects</h1>
+						</div>
+						<ul className="experience-list">
+							{projects.map((proj, idx) => (
+								<li key={idx} className="project-item">
+									<div
+										className="project-header"
+										onClick={() => toggleProject(idx)}
+									>
+										<GoArrowUpRight className="project-icon" />
+										<div className="project-info">
+											<span className="project-title">{proj.title}</span>
+											{proj.skills.split(",").map((skill) => (
+												<span>
+													<Tag key={skill} label={skill.trim()} />
+												</span>
+											))}
+										</div>
 									</div>
-								</div>
-								<div
-									className={`project-details ${
-										openProject === idx ? "open" : ""
-									}`}
-								>
-									{proj.details}
-								</div>
-							</li>
-						))}
-					</ul>
-				</div>
+									<div
+										className={`project-details ${
+											openProject === idx ? "open" : ""
+										}`}
+									>
+										{proj.details}
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+				</FadeInSection>
 
 				<hr className="section-divider" id="photos" />
-				<div className="page-section">
-					<div className="section-title">
-						<PiMountainsBold className="icon-inline" />
-						<h1>My Favorite Photos</h1>
-					</div>
-					<div className="photo-grid">
-						{[
-							{
-								src: require("./assets/myphotos/mp-boat.JPG"),
-								label: "San Francisco, CA",
-							},
-							{
-								src: require("./assets/myphotos/mp-sanfran.JPG"),
-								label: "San Francisco, CA",
-							},
-							{
-								src: require("./assets/myphotos/mp-la.JPG"),
-								label: "Los Angeles, CA",
-							},
-							{
-								src: require("./assets/myphotos/mp-greenhouse.JPG"),
-								label: "Kailasa Temple, India",
-							},
-							{
-								src: require("./assets/myphotos/mp-greatfalls.jpg"),
-								label: "Roma, Italy",
-							},
-							{
-								src: require("./assets/myphotos/mp-garden.jpg"),
-								label: "Annapolis, MD",
-							},
-						].map((p, i) => (
-							<div className="photo-card" key={i}>
-								<img src={p.src} alt={p.label} />
-								<span className="photo-tag">{p.label}</span>
+				<FadeInSection>
+					<div className="page-section">
+						<div className="section-title">
+							<PiMountainsBold className="icon-inline" />
+							<h1>My Favorite Photos</h1>
+						</div>
+						<div className="photo-carousel">
+							<div className="photo-track">
+								{[...photos, ...photos].map((p, i) => (
+									<div className="photo-card" key={i}>
+										<img src={p.src} alt={p.label} />
+									</div>
+								))}
 							</div>
-						))}
+						</div>
 					</div>
-				</div>
+				</FadeInSection>
 
 				<hr className="section-divider" />
-				<div className="page-section" id="footer">
-					<p>
-						If you would like to get in touch, feel free to reach out via email
-						jleonardSTEM2021@gmail.com or connect with me on LinkedIn
-					</p>
-					<p>Portfolio made with love by Jaden Leonard</p>
-					<Tag label="JavaScript" />
-					<Tag label="React" />
-					<Tag label="Node" />
-				</div>
+				<FadeInSection>
+					<div className="page-section" id="footer">
+						<p>
+							If you would like to get in touch, feel free to reach out via email
+							jleonardSTEM2021@gmail.com or connect with me on LinkedIn
+						</p>
+						<p>Portfolio made with love by Jaden Leonard</p>
+						<Tag label="JavaScript" />
+						<Tag label="React" />
+						<Tag label="Node" />
+					</div>
+				</FadeInSection>
 			</div>
 		</div>
 	);
