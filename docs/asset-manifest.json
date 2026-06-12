@@ -1,21 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.a36a7761.css",
-    "main.js": "/static/js/main.ebb7cadc.js",
+    "main.css": "/static/css/main.08e11a28.css",
+    "main.js": "/static/js/main.08780671.js",
     "static/media/mp-boat.JPG": "/static/media/mp-boat.14d78d109ed74b6e4a6e.JPG",
     "static/media/mp-garden.jpg": "/static/media/mp-garden.66cf02998d140d40aa66.jpg",
-    "static/media/bg1.png": "/static/media/bg1.ef8fb8a080d23298b9a8.png",
-    "static/media/b2.png": "/static/media/b2.428a4670ba0c4f0c8727.png",
     "static/media/mp-sanfran.JPG": "/static/media/mp-sanfran.f5abd64a7d4820814dce.JPG",
     "static/media/mp-greenhouse.JPG": "/static/media/mp-greenhouse.5d8415b78c9097e938b3.JPG",
     "static/media/mp-greatfalls.jpg": "/static/media/mp-greatfalls.de860ad697480d0b325f.jpg",
     "static/media/mp-la.JPG": "/static/media/mp-la.8ba014a14bfe2f3d5bf5.JPG",
     "index.html": "/index.html",
-    "main.a36a7761.css.map": "/static/css/main.a36a7761.css.map",
-    "main.ebb7cadc.js.map": "/static/js/main.ebb7cadc.js.map"
+    "main.08e11a28.css.map": "/static/css/main.08e11a28.css.map",
+    "main.08780671.js.map": "/static/js/main.08780671.js.map"
   },
   "entrypoints": [
-    "static/css/main.a36a7761.css",
-    "static/js/main.ebb7cadc.js"
+    "static/css/main.08e11a28.css",
+    "static/js/main.08780671.js"
   ]
 }

@@ -38,6 +38,15 @@ p {
 	margin: 0 0 100px 0;
 }
 
+.rotating-word-wrapper {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.rotating-word {
+	display: inline-block;
+}
+
 /* Header Links */
 .page-header-links {
 	display: flex;

@@ -20,6 +20,7 @@ import { photos } from "./data/photos";
 
 import Tag from "./components/Tag";
 import FadeInSection from "./components/FadeInSection";
+import RotatingWord from "./components/RotatingWord";
 
 function App() {
 	const [openExperience, setOpenExperience] = useState(null);
@@ -36,7 +37,7 @@ function App() {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
 				>
-					leonardjaden.work
+					leonardjaden.<RotatingWord />
 				</motion.p>
 				<div className="page-header">
 					<motion.div
