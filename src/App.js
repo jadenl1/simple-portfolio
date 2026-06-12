@@ -30,12 +30,20 @@ function App() {
 	return (
 		<div className="app" id="jaden">
 			<div className="page">
+				<motion.p
+					className="site-label"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
+				>
+					leonardjaden.work
+				</motion.p>
 				<div className="page-header">
 					<motion.div
 						className="section-title"
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
 					>
 						<LuFingerprint className="icon-inline" />
 						<h1>Jaden Leonard — SWE Intern @ Microsoft</h1>
@@ -43,7 +51,7 @@ function App() {
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 0.5, y: 0 }}
-						transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
 					>
 						Developer from Maryland
 						<br />
@@ -56,7 +64,7 @@ function App() {
 						className="page-header-links"
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+						transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
 					>
 						<a
 							className="page-header-link"
@@ -99,9 +107,9 @@ function App() {
 					id="experience"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 0.1, y: 0 }}
-					transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}
+					transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
 				/>
-				<FadeInSection delay={0.3}>
+				<FadeInSection delay={0.4}>
 					<div className="page-section">
 						<div className="section-title">
 							<FiBriefcase className="icon-inline" />
@@ -132,9 +140,9 @@ function App() {
 					id="experience"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 0.1, y: 0 }}
-					transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
+					transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
 				/>
-				<FadeInSection delay={0.4}>
+				<FadeInSection delay={0.5}>
 					<div className="page-section">
 						<div className="section-title">
 							<HiOutlineLightningBolt className="icon-inline" />
@@ -229,7 +237,7 @@ function App() {
 					<div className="page-section">
 						<div className="section-title">
 							<PiMountainsBold className="icon-inline" />
-							<h1>My Favorite Photos</h1>
+							<h1>Some of My Photos</h1>
 						</div>
 						<div className="photo-carousel">
 							<div className="photo-track">
@@ -250,7 +258,7 @@ function App() {
 							If you would like to get in touch, feel free to reach out via email
 							jleonardSTEM2021@gmail.com or connect with me on LinkedIn
 						</p>
-						<p>Portfolio made with love by Jaden Leonard</p>
+						<p>Portfolio designed & developed with love by Jaden Leonard</p>
 						<Tag label="JavaScript" />
 						<Tag label="React" />
 						<Tag label="Node" />

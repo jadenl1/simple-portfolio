@@ -10,8 +10,8 @@ code {
 }
 
 html {
-	background-color: #0a0a0a;
-	--bg-color: #0a0a0a;
+	--bg-color: #181719;
+	background-color: var(--bg-color);
 	color: rgb(255, 255, 255);
 	overflow-x: hidden;
 	scroll-behavior: smooth;
