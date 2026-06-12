@@ -4,8 +4,8 @@ export const experiences = [
 		role: "Software Engineer Intern",
 		details: (
 			<>
-				<p>May 2026 – Aug 2026</p>
-				<p>Windows + Devices Experience & Design Team, Incoming Summer 2026</p>
+				<p>May 2026 – Present</p>
+				<p>Experiences + Devices, Windows OS Shell Team.</p>
 			</>
 		),
 	},

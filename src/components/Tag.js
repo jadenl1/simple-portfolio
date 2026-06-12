@@ -21,7 +21,7 @@ const Tag = ({ label }) => {
 				fontSize: "10px",
 				fontWeight: 400,
 				padding: "0 10px",
-				borderRadius: "999px",
+				borderRadius: "3px",
 				height: "24px",
 				display: "inline-flex",
 				alignItems: "center",

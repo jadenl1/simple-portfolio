@@ -286,7 +286,7 @@ p {
 
 	/* Smaller photo cards and fades on mobile */
 	.photo-card {
-		height: 100px;
+		height: 280px;
 	}
 
 	.photo-carousel::before,
