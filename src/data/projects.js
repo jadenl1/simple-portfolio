@@ -70,26 +70,6 @@ export const projects = [
 		),
 	},
 	{
-		title: "Founder, Teryn: AI Solutions Consulting for Local Business",
-		skills: "Bots, LLM, AWS",
-		details: (
-			<>
-				<p>
-					Tech consulting company that builds custom AI-driven solutions to help local
-					businesses automate operations, boost customer engagement, and scale
-					intelligently.
-					<br />
-					<br />
-					Specializes in deploying lightweight, tailored tools powered by LLMs, bots, and
-					data-driven pipelines.
-					<br />
-					<br />
-					May 2025
-				</p>
-			</>
-		),
-	},
-	{
 		title: "Techtionary: Documentation Platform for Computer Science Terms",
 		skills: "React, Node, Firebase",
 		details: (

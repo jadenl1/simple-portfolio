@@ -4,7 +4,7 @@ import "./App.css";
 import { FaFolder } from "react-icons/fa";
 
 import { LuFingerprint } from "react-icons/lu";
-import { FiBriefcase } from "react-icons/fi";
+import { FiBriefcase, FiPlus } from "react-icons/fi";
 import { MdOutlineFolderCopy } from "react-icons/md";
 import { PiMountainsBold } from "react-icons/pi";
 import { HiOutlineLightningBolt } from "react-icons/hi";
@@ -221,13 +221,17 @@ function App() {
 										className="project-header"
 										onClick={() => toggleProject(idx)}
 									>
-										<GoArrowUpRight className="project-icon" />
+										<FiPlus
+											className={`project-icon ${
+												openProject === idx ? "open" : ""
+											}`}
+										/>
 										<div className="project-info">
 											<span className="project-title">{proj.title}</span>
+										</div>
+										<div className="project-tags">
 											{proj.skills.split(",").map((skill) => (
-												<span>
-													<Tag key={skill} label={skill.trim()} />
-												</span>
+												<Tag key={skill} label={skill.trim()} />
 											))}
 										</div>
 									</div>

@@ -145,39 +145,55 @@ p {
 	margin-top: 20px;
 }
 
-/* Project List (unchanged) */
+/* Project List */
 .project-item {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 5px;
+	margin-bottom: 16px;
 	border-radius: 5px;
 	font-size: 14px;
+	border: 0.5px solid rgba(255, 255, 255, 0.07);
 }
 
 .project-header {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px 12px;
 	margin-bottom: 0;
-	padding: 4px 10px;
-	border-radius: 5px;
-	transition: background-color 0.2s;
+	padding: 20px 24px;
+	border-radius: 10px;
 	cursor: pointer;
 }
 
 .project-item:hover {
-	background-color: rgba(37, 37, 37, 0.329);
+	background-color: rgba(255, 255, 255, 0.017);
 }
 
 .project-icon {
 	margin-right: 10px;
 	color: white;
 	font-size: 14px;
+	transition: transform 0.3s ease;
+	transform: rotate(0deg);
+}
+
+.project-icon.open {
+	transform: rotate(135deg);
 }
 
 .project-info {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
+}
+
+.project-tags {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 4px;
+	margin-left: auto;
 }
 
 .project-skills {
@@ -200,15 +216,14 @@ p {
 		max-height 0.6s ease,
 		opacity 0.6s ease 0.2s,
 		padding 0.6s ease 0.1s;
-	padding: 0;
-	margin-left: 24px;
+	padding: 0 24px 0 48px;
 	max-width: 95%;
 }
 
 .project-details.open {
 	max-height: 500px;
 	opacity: 1;
-	padding: 10px 0;
+	padding: 14px 24px 22px 48px;
 }
 
 .project-details > * {
@@ -322,5 +337,13 @@ p {
 	/* Hide project arrow icon on mobile */
 	.project-icon {
 		display: none;
+	}
+
+	.project-details {
+		padding-left: 24px;
+	}
+
+	.project-details.open {
+		padding-left: 24px;
 	}
 }
