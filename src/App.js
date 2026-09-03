@@ -19,8 +19,40 @@ import { projects } from "./data/projects";
 import { photos } from "./data/photos";
 
 import Tag from "./components/Tag";
-import FadeInSection from "./components/FadeInSection";
+import FadeInSection, { FadeInItem, revealGroup } from "./components/FadeInSection";
 import RotatingWord from "./components/RotatingWord";
+
+// A list reveals its rows one after another; a row's own parts appear together.
+const listStagger = revealGroup(0.07);
+const rowTogether = revealGroup(0);
+
+// Dividers fade to the 0.1 opacity the stylesheet gives them.
+const Divider = (props) => (
+	<motion.hr
+		className="section-divider"
+		initial={{ opacity: 0 }}
+		whileInView={{ opacity: 0.1 }}
+		viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+		transition={{ duration: 0.5, ease: "easeOut" }}
+		{...props}
+	/>
+);
+
+// A two-column experience row. The <li> is `display: contents`, so the grid
+// items inside it are what actually animate.
+const ExperienceRow = ({ exp }) => (
+	<motion.li className="experience-entry" variants={rowTogether}>
+		<FadeInItem className="experience-meta">
+			<p className="experience-title">
+				{exp.role} @ {exp.company}
+			</p>
+			<p className="experience-dates">{exp.details.props.children[0].props.children}</p>
+		</FadeInItem>
+		<FadeInItem className="experience-description">
+			<p>{exp.details.props.children[1].props.children}</p>
+		</FadeInItem>
+	</motion.li>
+);
 
 function App() {
 	const [openExperience, setOpenExperience] = useState(null);
@@ -117,107 +149,65 @@ function App() {
 
 				<motion.hr
 					className="section-divider"
-					id="experience"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 0.1, y: 0 }}
-					transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 0.1 }}
+					transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
 				/>
-				<FadeInSection delay={0.4}>
+				{/* The first section sits above the fold, so it waits for the header. */}
+				<FadeInSection delay={0.5} id="experience">
 					<div className="page-section">
-						<div className="section-title">
+						<FadeInItem className="section-title">
 							<FiBriefcase className="icon-inline" />
 							<h1>Experience</h1>
-						</div>
-						<ul className="experience-grid">
+						</FadeInItem>
+						<motion.ul className="experience-grid" variants={listStagger}>
 							{experiences.map((exp, idx) => (
-								<li key={idx} className="experience-entry">
-									<div className="experience-meta">
-										<p className="experience-title">
-											{exp.role} @ {exp.company}
-										</p>
-										<p className="experience-dates">
-											{exp.details.props.children[0].props.children}
-										</p>
-									</div>
-									<div className="experience-description">
-										<p>{exp.details.props.children[1].props.children}</p>
-									</div>
-								</li>
+								<ExperienceRow key={idx} exp={exp} />
 							))}
-						</ul>
+						</motion.ul>
 					</div>
 				</FadeInSection>
 
-				<motion.hr
-					className="section-divider"
-					id="experience"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 0.1, y: 0 }}
-					transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
-				/>
-				<FadeInSection delay={0.5}>
+				<Divider />
+				<FadeInSection>
 					<div className="page-section">
-						<div className="section-title">
+						<FadeInItem className="section-title">
 							<HiOutlineLightningBolt className="icon-inline" />
 							<h1>Startups</h1>
-						</div>
-						<ul className="experience-grid">
+						</FadeInItem>
+						<motion.ul className="experience-grid" variants={listStagger}>
 							{startups.map((exp, idx) => (
-								<li key={idx} className="experience-entry">
-									<div className="experience-meta">
-										<p className="experience-title">
-											{exp.role} @ {exp.company}
-										</p>
-										<p className="experience-dates">
-											{exp.details.props.children[0].props.children}
-										</p>
-									</div>
-									<div className="experience-description">
-										<p>{exp.details.props.children[1].props.children}</p>
-									</div>
-								</li>
+								<ExperienceRow key={idx} exp={exp} />
 							))}
-						</ul>
+						</motion.ul>
 					</div>
 				</FadeInSection>
 
-				<hr className="section-divider" id="experience" />
+				<Divider />
 				<FadeInSection>
 					<div className="page-section">
-						<div className="section-title">
+						<FadeInItem className="section-title">
 							<TbHeartHandshake className="icon-inline" />
 							<h1>Volunteer & Extracurricular</h1>
-						</div>
-						<ul className="experience-grid">
+						</FadeInItem>
+						<motion.ul className="experience-grid" variants={listStagger}>
 							{volunteer.map((exp, idx) => (
-								<li key={idx} className="experience-entry">
-									<div className="experience-meta">
-										<p className="experience-title">
-											{exp.role} @ {exp.company}
-										</p>
-										<p className="experience-dates">
-											{exp.details.props.children[0].props.children}
-										</p>
-									</div>
-									<div className="experience-description">
-										<p>{exp.details.props.children[1].props.children}</p>
-									</div>
-								</li>
+								<ExperienceRow key={idx} exp={exp} />
 							))}
-						</ul>
+						</motion.ul>
 					</div>
 				</FadeInSection>
 
-				<hr className="section-divider" id="projects" />
+				<Divider id="projects" />
 				<FadeInSection>
 					<div className="page-section">
-						<div className="section-title">
+						<FadeInItem className="section-title">
 							<MdOutlineFolderCopy className="icon-inline" />
 							<h1>Projects</h1>
-						</div>
-						<ul className="experience-list">
+						</FadeInItem>
+						<motion.ul className="experience-list" variants={listStagger}>
 							{projects.map((proj, idx) => (
-								<li key={idx} className="project-item">
+								<FadeInItem as="li" key={idx} className="project-item">
 									<div
 										className="project-header"
 										onClick={() => toggleProject(idx)}
@@ -243,20 +233,20 @@ function App() {
 									>
 										{proj.details}
 									</div>
-								</li>
+								</FadeInItem>
 							))}
-						</ul>
+						</motion.ul>
 					</div>
 				</FadeInSection>
 
-				<hr className="section-divider" id="photos" />
+				<Divider id="photos" />
 				<FadeInSection>
 					<div className="page-section">
-						<div className="section-title">
+						<FadeInItem className="section-title">
 							<PiMountainsBold className="icon-inline" />
 							<h1>Some of My Photos</h1>
-						</div>
-						<div className="photo-carousel">
+						</FadeInItem>
+						<FadeInItem className="photo-carousel">
 							<div className="photo-track" ref={photoTrackRef}>
 								{[...photos, ...photos].map((p, i) => (
 									<div className="photo-card" key={i}>
@@ -264,21 +254,25 @@ function App() {
 									</div>
 								))}
 							</div>
-						</div>
+						</FadeInItem>
 					</div>
 				</FadeInSection>
 
-				<hr className="section-divider" />
+				<Divider />
 				<FadeInSection>
 					<div className="page-section" id="footer">
-						<p>
+						<FadeInItem as="p">
 							If you would like to get in touch, feel free to reach out via email
 							jleonardSTEM2021@gmail.com or connect with me on LinkedIn
-						</p>
-						<p>Portfolio designed & developed with love by Jaden Leonard</p>
-						<Tag label="JavaScript" />
-						<Tag label="React" />
-						<Tag label="Node" />
+						</FadeInItem>
+						<FadeInItem as="p">
+							Portfolio designed & developed with love by Jaden Leonard
+						</FadeInItem>
+						<FadeInItem>
+							<Tag label="JavaScript" />
+							<Tag label="React" />
+							<Tag label="Node" />
+						</FadeInItem>
 					</div>
 				</FadeInSection>
 			</div>
