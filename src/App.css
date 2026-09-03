@@ -339,6 +339,19 @@ p {
 		display: none;
 	}
 
+	/* Stack tags under the title, left aligned */
+	.project-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.project-tags {
+		width: 100%;
+		margin-left: 0;
+		justify-content: flex-start;
+	}
+
 	.project-details {
 		padding-left: 24px;
 	}

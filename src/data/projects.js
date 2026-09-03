@@ -1,23 +1,50 @@
 export const projects = [
 	{
-		title: "Vehicle-to-Everything Integrated Traffic Relief Simulation",
-		skills: "Python, SUMO, Scikit-Learn",
+		title: "x402 Agentic AI Payment Gateway",
+		skills: "Node, Express, AWS Fargate, ElastiCache, Twilio",
 		details: (
 			<>
 				<p>
-					Automated Python MAPE/RMSE calibration of SUMO traffic parameters, achieving{" "}
-					{"<"} 10% error in flows and travel times.
+					Built an AWS Fargate reverse proxy using the x402 protocol to intercept agentic
+					AI financial transactions in real time, giving users absolute spending oversight
+					via SMS wallet control.
 					<br />
 					<br />
-					Integrated Vehicle-to-Everything communication (V2X) via Python-controlled SUMO
-					netradio/TraCI, cutting average travel times by 10%.
+					Reduced payment finality to {"<"}2s by implementing an ElastiCache-backed state
+					machine to hold payloads in memory, eliminating timeout failures in
+					high-throughput agent workflows.
 					<br />
 					<br />
-					Constructed a Python ML pipeline (scikit-learn/TensorFlow) for peak-hour demand
-					forecasting and routing, boosting accuracy by 15%.
+					Secured credentials with AWS Secrets Manager, drawing keys strictly at execution
+					for 100% secure authorized AI spending.
 					<br />
 					<br />
-					Developed May 2025.
+					Apr 2026 — Jun 2026
+				</p>
+			</>
+		),
+	},
+	{
+		title: "V2X Integrated Traffic Relief Simulation",
+		skills: "Python, SUMO, Scikit-Learn, TensorFlow",
+		details: (
+			<>
+				<p>
+					Automated MAPE/RMSE calibration of SUMO simulation parameters, achieving
+					{"<"}10% error in vehicle flow and travel time against real-world baselines.
+					<br />
+					<br />
+					Integrated V2X communication via SUMO TraCI, reducing simulated average travel
+					times by 10% through real-time signal coordination between vehicles and
+					infrastructure.
+					<br />
+					<br />
+					Constructed a scikit-learn / TensorFlow ML pipeline for peak-hour demand
+					forecasting and adaptive routing, improving prediction accuracy by 15% over
+					baseline models.
+					<br />
+					<br />
+					Apr 2025 — May 2025
 				</p>
 			</>
 		),
@@ -42,29 +69,25 @@ export const projects = [
 		),
 	},
 	{
-		title: "Cofounder, NitesOut: Collaborative Filtering Event Discovery Engine",
-		skills: "Scikit-Surprise, Python, Google Cloud",
+		title: "NitesOut Event Discovery Platform",
+		skills: "Pandas, Scikit-Surprise, React, Express, Django, GCP",
 		details: (
 			<>
 				<p>
-					Cofounded and led both creative and full-stack development for NitesOut, a
-					personalized event discovery web app.
-					<br />
-					<br />
-					Implemented & deployed collaborative-filtering recommender (Pandas,
-					Scikit-Surprise) via Django hosted on Google Cloud.
+					Tailored event discovery through collaborative-filtering recommender
+					(Scikit-Surprise) hosted via Django on Google Cloud.
 					<br />
 					<br />
 					Reduced API round-trip latency by 35% by routing lightweight requests (Stripe,
-					Auth, database queries) through a dedicated Express service and handling
-					compute-intensive tasks (user feed generation) through Django.
+					Auth, database) through a dedicated Express microservice and reserving Django
+					for compute-intensive feed generation.
 					<br />
 					<br />
-					Organized 15 branded events (500–1,000 attendees each), generating $95k in
-					revenue.
+					Scaled the platform to support 15 branded events (500–1,000 attendees each),
+					generating $50k+ in revenue.
 					<br />
 					<br />
-					Jul 2023 — Current
+					Jul 2023 — Oct 2024
 				</p>
 			</>
 		),

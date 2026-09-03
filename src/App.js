@@ -91,7 +91,7 @@ function App() {
 						transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
 					>
 						<LuFingerprint className="icon-inline" />
-						<h1>Jaden Leonard — SWE Intern @ Microsoft</h1>
+						<h1>Jaden Leonard — Prev @ Microsoft, CS Grad Student</h1>
 					</motion.div>
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ function App() {
 						<br />
 						Computer Science B.S @ University of Maryland, College Park
 						<br />
-						Computer Science M.S @ Bowie State University, expected Spring 2027
+						Computer Science M.S @ Bowie State University, expected May 2027
 					</motion.p>
 
 					<motion.span
