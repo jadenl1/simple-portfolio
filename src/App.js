@@ -48,7 +48,8 @@ function App() {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6, ease: "easeOut", delay: 0 }}
 				>
-					leonardjaden.<RotatingWord />
+					leonardjaden.
+					<RotatingWord />
 				</motion.p>
 				<div className="page-header">
 					<motion.div
@@ -102,7 +103,7 @@ function App() {
 						</a>
 						<a
 							className="page-header-link"
-							href="https://drive.google.com/file/d/1pVjeoFd5v5BYOREEk7XZ3qC7295Jl3zV/view?usp=sharing"
+							href="https://drive.google.com/file/d/1sn_fvdxSXjTkl8Er-btH8WxAteI5qZrH/view?usp=sharing"
 							target="_blank"
 							rel="noopener noreferrer"
 						>

@@ -4,7 +4,7 @@ export const volunteer = [
 		role: "Fellow",
 		details: (
 			<>
-				<p>Feb 2023 – May 2025</p>
+				<p>Feb 2023 — May 2025</p>
 				<p>
 					University incubator, worked on NitesOut. Recieved Dingman eFund Grant for
 					startup NitesOut.
@@ -17,7 +17,7 @@ export const volunteer = [
 		role: "Organizer, Software Team",
 		details: (
 			<>
-				<p>Nov 2022 – Sept 2024</p>
+				<p>Nov 2022 — Sept 2024</p>
 				<p>
 					AWS migration + deployed internal processes focused on increasing judge &
 					organizer retention.
@@ -30,10 +30,10 @@ export const volunteer = [
 		role: "Organizer, Software Lead",
 		details: (
 			<>
-				<p>Nov 2021 – Aug 2022</p>
+				<p>Nov 2021 — Aug 2022</p>
 				<p>
-					Led rebuild of legacy system to improve speed, real-time features, and
-					design, cutting load time and boosting user satisfaction.
+					Led rebuild of legacy system to improve speed, real-time features, and design,
+					cutting load time and boosting user satisfaction.
 				</p>
 			</>
 		),
