@@ -146,6 +146,25 @@ p {
 }
 
 /* Project List */
+.project-year-group {
+	margin-top: 28px;
+}
+
+.project-year {
+	font-size: 12px;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.45);
+	text-align: left;
+}
+
+.project-year-group .experience-list {
+	margin-top: 12px;
+}
+
+.project-year-group .project-item:last-child {
+	margin-bottom: 0;
+}
+
 .project-item {
 	display: flex;
 	flex-direction: column;

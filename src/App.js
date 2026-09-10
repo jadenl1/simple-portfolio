@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
-import { FaFolder } from "react-icons/fa";
 
 import { LuFingerprint } from "react-icons/lu";
 import { FiBriefcase, FiPlus } from "react-icons/fi";
@@ -25,6 +24,13 @@ import RotatingWord from "./components/RotatingWord";
 // A list reveals its rows one after another; a row's own parts appear together.
 const listStagger = revealGroup(0.07);
 const rowTogether = revealGroup(0);
+
+const projectsByYear = Object.entries(
+	projects.reduce((groups, project) => {
+		(groups[project.year] ??= []).push(project);
+		return groups;
+	}, {})
+).sort(([yearA], [yearB]) => Number(yearB) - Number(yearA));
 
 // Dividers fade to the 0.1 opacity the stylesheet gives them.
 const Divider = (props) => (
@@ -54,10 +60,8 @@ const ExperienceRow = ({ exp }) => (
 	</motion.li>
 );
 
-function App() {
-	const [openExperience, setOpenExperience] = useState(null);
+function OriginalView() {
 	const [openProject, setOpenProject] = useState(null);
-	const toggleExperience = (idx) => setOpenExperience(openExperience === idx ? null : idx);
 	const toggleProject = (idx) => setOpenProject(openProject === idx ? null : idx);
 	const photoTrackRef = useRef(null);
 
@@ -205,37 +209,44 @@ function App() {
 							<MdOutlineFolderCopy className="icon-inline" />
 							<h1>Projects</h1>
 						</FadeInItem>
-						<motion.ul className="experience-list" variants={listStagger}>
-							{projects.map((proj, idx) => (
-								<FadeInItem as="li" key={idx} className="project-item">
-									<div
-										className="project-header"
-										onClick={() => toggleProject(idx)}
-									>
-										<FiPlus
-											className={`project-icon ${
-												openProject === idx ? "open" : ""
-											}`}
-										/>
-										<div className="project-info">
-											<span className="project-title">{proj.title}</span>
-										</div>
-										<div className="project-tags">
-											{proj.skills.split(",").map((skill) => (
-												<Tag key={skill} label={skill.trim()} />
-											))}
-										</div>
-									</div>
-									<div
-										className={`project-details ${
-											openProject === idx ? "open" : ""
-										}`}
-									>
-										{proj.details}
-									</div>
+						{projectsByYear.map(([year, yearProjects]) => (
+							<section className="project-year-group" key={year} aria-labelledby={`projects-${year}`}>
+								<FadeInItem as="h2" className="project-year" id={`projects-${year}`}>
+									{year}
 								</FadeInItem>
-							))}
-						</motion.ul>
+								<motion.ul className="experience-list" variants={listStagger}>
+									{yearProjects.map((proj) => (
+										<FadeInItem as="li" key={proj.title} className="project-item">
+											<div
+												className="project-header"
+												onClick={() => toggleProject(proj.title)}
+											>
+												<FiPlus
+													className={`project-icon ${
+														openProject === proj.title ? "open" : ""
+													}`}
+												/>
+												<div className="project-info">
+													<span className="project-title">{proj.title}</span>
+												</div>
+												<div className="project-tags">
+													{proj.skills.split(",").map((skill) => (
+														<Tag key={skill} label={skill.trim()} />
+													))}
+												</div>
+											</div>
+											<div
+												className={`project-details ${
+													openProject === proj.title ? "open" : ""
+												}`}
+											>
+												{proj.details}
+											</div>
+										</FadeInItem>
+									))}
+								</motion.ul>
+							</section>
+						))}
 					</div>
 				</FadeInSection>
 
@@ -280,4 +291,4 @@ function App() {
 	);
 }
 
-export default App;
+export default OriginalView;
