@@ -1,35 +1,16 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
 
 export default function ThemeToggle() {
-    const [hidden, setHidden] = useState(false);
-    useEffect(() => {
-        let previousY = Math.max(0, window.scrollY);
-        let distance = 0;
-        const onScroll = () => {
-            const y = Math.max(0, window.scrollY);
-            const delta = y - previousY;
-            previousY = y;
-            if (y <= 24) {
-                distance = 0;
-                setHidden(false);
-                return;
-            }
-            if (delta === 0) return;
-            distance = Math.sign(delta) === Math.sign(distance) ? distance + delta : delta;
-            if (Math.abs(distance) >= 8) {
-                setHidden(distance > 0);
-                distance = 0;
-            }
-        };
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
     const [theme, setTheme] = useState(() => {
         try {
-            return localStorage.getItem("portfolio-theme") === "light" ? "light" : "dark";
+            const saved = localStorage.getItem("portfolio-theme");
+            if (saved === "light" || saved === "dark") return saved;
+            const mobile = typeof window !== "undefined" && window.matchMedia?.("(max-width: 600px)").matches;
+            return mobile ? "light" : "dark";
         } catch {
-            return "dark";
+            const mobile = typeof window !== "undefined" && window.matchMedia?.("(max-width: 600px)").matches;
+            return mobile ? "light" : "dark";
         }
     });
 
@@ -45,11 +26,10 @@ export default function ThemeToggle() {
 
     const label = `Switch to ${theme === "dark" ? "light" : "dark"} mode`;
     return (
-        <button className="theme-toggle" data-scroll-hidden={hidden} type="button" role="switch" aria-checked={theme === "light"} aria-label="Light mode" title={label}
+        <button className="theme-toggle" data-theme={theme} type="button" aria-label={label} title={label}
             onClick={() => setTheme(current => current === "dark" ? "light" : "dark")}>
-            <span className="theme-switch-thumb" aria-hidden="true">
-                {theme === "dark" ? <FiMoon className="theme-switch-icon" /> : <FiSun className="theme-switch-icon" />}
-            </span>
+            <FiSun className="theme-icon theme-icon-sun" aria-hidden="true" />
+            <FiMoon className="theme-icon theme-icon-moon" aria-hidden="true" />
         </button>
     );
 }

@@ -1,0 +1,85 @@
+.side-nav { position: fixed; z-index: 100; top: 50%; left: 2px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 0; transition: opacity 180ms ease, transform 400ms cubic-bezier(0.22, 1, 0.36, 1); }
+.side-nav a, .side-nav button { display: grid; place-items: center; width: 36px; height: 28px; padding: 0; border: 0; background: none; color: rgba(var(--fg-rgb), 0.35); cursor: pointer; transition: color 200ms ease; }
+.side-nav, .side-nav a, .side-nav button { pointer-events: auto; touch-action: manipulation; }
+.side-nav svg { width: 14px; height: 14px; }
+.theme-toggle .theme-icon { grid-area: 1 / 1; pointer-events: none; transition: opacity 250ms ease; }
+.theme-toggle[data-theme="dark"] .theme-icon-sun,
+.theme-toggle[data-theme="light"] .theme-icon-moon { opacity: 1; }
+.theme-toggle[data-theme="light"] .theme-icon-sun { opacity: 0; }
+.theme-toggle[data-theme="dark"] .theme-icon-moon { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .theme-toggle .theme-icon { transition: none; } }
+.side-nav a[aria-current] { color: rgb(var(--fg-rgb)); }
+@media (hover: hover) {
+    .side-nav a:hover, .side-nav button:hover { color: rgb(var(--fg-rgb)); }
+}
+.side-nav a:focus-visible, .side-nav button:focus-visible { color: rgb(var(--fg-rgb)); outline: 2px solid var(--focus-color); outline-offset: 2px; border-radius: 3px; }
+#about, #experience, #startups, #community, #projects, #timeline, #photos, #footer { scroll-margin-top: 40px; }
+@media (max-width: 1000px) {
+    .app .page { width: calc(100% - 76px); margin-left: 52px; margin-right: 24px; }
+}
+@media (max-width: 600px) {
+    .side-nav {
+        top: auto;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        width: max-content;
+        max-width: calc(100vw - 24px);
+        padding: 5px 7px;
+        gap: 0;
+        border: 1px solid rgba(var(--fg-rgb), 0.12);
+        border-radius: 5px;
+        background: rgba(var(--bg-color-rgb, 24, 23, 25), 0.62);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        pointer-events: auto;
+        transition: transform 260ms ease, opacity 220ms ease;
+    }
+    .side-nav[data-scroll-hidden="true"] { transform: translate(-50%, calc(100% + 24px)); opacity: 0; pointer-events: none; }
+    .side-nav-slot, .side-nav-theme { width: 32px; height: 28px; }
+    .side-nav-slot[data-visible="false"] { width: 0; }
+    .side-nav a, .side-nav button { width: 32px; height: 28px; }
+    .side-nav .theme-toggle { position: relative; top: auto; right: auto; width: 32px; height: 28px; border: 0; border-radius: 0; transform: none; opacity: 1; pointer-events: auto; }
+}
+@media (max-width: 600px) and (prefers-reduced-motion: no-preference) {
+    .side-nav { animation: mobile-nav-enter 500ms cubic-bezier(0.22, 1, 0.36, 1) 500ms backwards; }
+    .side-nav-slot > * { animation: none; }
+}
+@keyframes mobile-nav-enter {
+    from { opacity: 0; transform: translate(-50%, calc(100% + 24px)); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+/* Animate each slot's height so the whole rail stays centered as it changes. */
+.side-nav-slot { height: 32px; opacity: 1; transition: height 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease, visibility 0s; }
+.side-nav-slot[data-visible="false"] { height: 0; opacity: 0; pointer-events: none; visibility: hidden; transition-delay: 0s, 0s, 200ms; }
+.side-nav-theme { height: 28px; }
+@media (max-height: 500px) { .side-nav-slot { height: 30px; } .side-nav-theme { height: 28px; } .side-nav-slot[data-visible="false"] { height: 0; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .side-nav a, .side-nav button, .side-nav-slot { transition: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+    .side-nav-slot > * { animation: nav-icon-enter 450ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--entrance-delay) + 300ms) backwards; }
+}
+@keyframes nav-icon-enter {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Horizontal slots animate width on mobile; fixed height keeps icons centered. */
+@media (max-width: 600px) {
+    .side-nav-slot, .side-nav-theme {
+        flex: 0 0 auto;
+        width: 32px;
+        height: 28px;
+        transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease, visibility 0s;
+    }
+    .side-nav-slot[data-visible="false"] {
+        width: 0;
+        height: 28px;
+        transition-delay: 0s, 0s, 200ms;
+    }
+    .side-nav-slot > * { animation: none; }
+}
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+    .side-nav, .side-nav-slot { transition: none; }
+}

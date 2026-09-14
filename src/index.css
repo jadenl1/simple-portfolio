@@ -11,6 +11,7 @@ code {
 
 html {
 	--bg-color: #181719;
+	--bg-color-rgb: 24, 23, 25;
 	--fg-rgb: 255, 255, 255;
 	--card-bg: #201f22;
 	--focus-color: #c4c3d0;
@@ -24,6 +25,7 @@ html {
 
 html[data-theme="light"] {
 	--bg-color: #faf9f7;
+	--bg-color-rgb: 250, 249, 247;
 	--fg-rgb: 30, 29, 32;
 	--card-bg: #ffffff;
 	--focus-color: #59536b;

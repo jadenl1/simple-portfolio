@@ -29,8 +29,8 @@
 .timeline-grid { position: absolute; inset: 0; display: grid; grid-template-columns: var(--timeline-columns); pointer-events: none; }
 .timeline-grid span { border-left: 1px solid rgba(var(--fg-rgb), 0.0627); }
 .timeline-bar { position: absolute; top: 0; height: 28px; box-sizing: border-box; padding: 0; border: 0; background: transparent; color: rgb(var(--fg-rgb)); text-align: left; }
-.timeline-bar::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(var(--fg-rgb), 0.1882); }
-.timeline-bar::after { content: ''; position: absolute; left: 0; right: 0; top: calc(50% - 5px); height: 11px; border-left: 1px solid rgba(var(--fg-rgb), 0.3765); border-right: 1px solid rgba(var(--fg-rgb), 0.3765); pointer-events: none; }
+.timeline-bar::before { content: ''; position: absolute; left: 3px; right: 3px; top: 50%; height: 1px; background: rgba(var(--fg-rgb), 0.1882); }
+.timeline-bar::after { content: ''; position: absolute; left: -2px; right: -2px; top: calc(50% - 2px); height: 5px; color: rgba(var(--fg-rgb), 0.1882); background: radial-gradient(circle closest-side, currentColor 100%, transparent 100%) left center / 5px 5px no-repeat, radial-gradient(circle closest-side, currentColor 100%, transparent 100%) right center / 5px 5px no-repeat; pointer-events: none; }
 .timeline-bar:hover, .timeline-bar:focus-visible { color: rgb(var(--fg-rgb)); z-index: 1; }
 .timeline-bar:hover::before, .timeline-bar:focus-visible::before { background: rgba(var(--fg-rgb), 0.3961); }
 .timeline-bar-label { display: flex; align-items: center; gap: 6px; position: sticky; left: 8px; width: max-content; max-width: calc(100% - 24px); margin: 0 12px; padding: 0 5px; box-sizing: border-box; background: var(--bg-color); overflow: hidden; line-height: 28px; }
@@ -68,4 +68,14 @@
 }
 @media (prefers-reduced-motion: reduce) {
     .timeline-axis, .timeline-months, .timeline-grid, .timeline-row { animation: none; }
+}
+
+.timeline-bar:hover::after, .timeline-bar:focus-visible::after { color: rgba(var(--fg-rgb), 0.3961); }
+
+@media (prefers-reduced-motion: no-preference) {
+    .view-toggle { animation: view-toggle-enter 500ms ease-out 450ms backwards; }
+}
+@keyframes view-toggle-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }

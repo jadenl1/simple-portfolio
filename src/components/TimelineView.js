@@ -69,12 +69,12 @@ export const timelineEntries = [
 ].map(item => ({ ...item, title: item.title || item.company }))
     .sort((a, b) => a.start.localeCompare(b.start) || a.title.localeCompare(b.title));
 
-// An interval can reuse a lane only after the previous interval ends.
-// End months are inclusive, so two activities in the same month overlap.
+// End months are inclusive: the drawn endpoint is the next month's boundary.
+// Require a gap so adjacent intervals cannot share an endpoint circle.
 export const packLanes = (entries) => {
     const lanes = [];
     [...entries].sort((a, b) => a.start.localeCompare(b.start) || a.title.localeCompare(b.title)).forEach(item => {
-        const lane = lanes.find(items => monthIndex(items[items.length - 1].end) < monthIndex(item.start));
+        const lane = lanes.find(items => monthIndex(items[items.length - 1].end) + 1 < monthIndex(item.start));
         if (lane) lane.push(item);
         else lanes.push([item]);
     });
@@ -149,7 +149,7 @@ export default function TimelineView() {
     const [hover, setHover] = useState(null);
     const scrollRef = useRef(null);
     return (
-        <section className="timeline" aria-label="Portfolio timeline">
+        <section id="timeline" className="timeline" aria-label="Portfolio timeline">
             <div onScroll={() => setHover(null)} ref={scrollRef} className="timeline-scroll" tabIndex={0} role="region" aria-label="Timeline chart; scroll horizontally to explore years">
                 <div className="timeline-chart" style={{ "--timeline-width": `${(span / 12) * 100}%`, "--timeline-columns": yearColumns }}>
                     <div className="timeline-axis">

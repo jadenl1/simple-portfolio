@@ -19,7 +19,7 @@ import { photos } from "./data/photos";
 
 import ViewTransition from "./components/ViewTransition";
 import TimelineView from "./components/TimelineView";
-import ThemeToggle from "./components/ThemeToggle";
+import SideNav from "./components/SideNav";
 import Tag from "./components/Tag";
 import FadeInSection, { FadeInItem, revealGroup } from "./components/FadeInSection";
 import RotatingWord from "./components/RotatingWord";
@@ -82,7 +82,7 @@ function OriginalView() {
 
 	return (
 		<div className="app" id="jaden">
-			<ThemeToggle />
+			<SideNav view={view} />
 			<div className="page">
 				<motion.p
 					className="site-label"
@@ -93,7 +93,7 @@ function OriginalView() {
 					leonardjaden.
 					<RotatingWord />
 				</motion.p>
-				<div className="page-header">
+				<div className="page-header" id="about">
 					<motion.div
 						className="section-title"
 						initial={{ opacity: 0, y: 20 }}
@@ -190,7 +190,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.12 : 0}>
+				<FadeInSection id="startups" revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.12 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<HiOutlineLightningBolt className="icon-inline" />
@@ -205,7 +205,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.24 : 0}>
+				<FadeInSection id="community" revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.24 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<TbHeartHandshake className="icon-inline" />

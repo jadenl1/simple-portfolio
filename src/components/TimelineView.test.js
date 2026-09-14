@@ -71,8 +71,16 @@ test('packs separate activities together without putting overlapping date ranges
     expect(lanes.some(lane => lane.length > 1)).toBe(true);
     expect(lanes.flat()).toHaveLength(timelineEntries.length);
     lanes.forEach(lane => lane.slice(1).forEach((item, index) => {
-        expect(monthIndex(lane[index].end)).toBeLessThan(monthIndex(item.start));
+        expect(monthIndex(lane[index].end) + 1).toBeLessThan(monthIndex(item.start));
     }));
+});
+
+test('separates touching endpoints but reuses a row when there is a gap', () => {
+    const first = { title: 'First', start: '2025-01', end: '2025-03' };
+    const touching = { title: 'Touching', start: '2025-04', end: '2025-06' };
+    const separated = { title: 'Separated', start: '2025-05', end: '2025-07' };
+    expect(packLanes([first, touching])).toEqual([[first], [touching]]);
+    expect(packLanes([first, separated])).toEqual([[first, separated]]);
 });
 
 test('bars carry their own title and year labels remain without navigation buttons', () => {
