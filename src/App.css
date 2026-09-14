@@ -300,6 +300,13 @@ p {
 	}
 }
 
+/* The photo reel is intentionally ambient and remains active for all motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+	.photo-track {
+		animation: photo-scroll 40s linear infinite !important;
+	}
+}
+
 /* Photo card wraps an image and label */
 .photo-card {
 	position: relative;
