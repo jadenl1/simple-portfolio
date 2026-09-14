@@ -30,7 +30,7 @@ export const FadeInItem = ({ as = "div", children, ...rest }) => {
 	);
 };
 
-const FadeInSection = ({ children, className = "", delay = 0, ...rest }) => (
+const FadeInSection = ({ children, className = "", delay = 0, revealOnMount = false, ...rest }) => (
 	<motion.div
 		className={className}
 		variants={{
@@ -38,7 +38,8 @@ const FadeInSection = ({ children, className = "", delay = 0, ...rest }) => (
 			show: { transition: { staggerChildren: 0.08, delayChildren: delay } },
 		}}
 		initial="hidden"
-		whileInView="show"
+		animate={revealOnMount ? "show" : undefined}
+		whileInView={revealOnMount ? undefined : "show"}
 		// Fire once the top of the section has come a little way into view, so a
 		// tall section still starts revealing from its first row.
 		viewport={{ once: true, margin: "0px 0px -12% 0px" }}

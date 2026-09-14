@@ -15,9 +15,10 @@ const Tag = ({ label }) => {
 
 	return (
 		<span
+			className="skill-tag"
 			style={{
 				backgroundColor: bg,
-				color: text,
+				color: `var(--tag-text, ${text})`,
 				fontSize: "10px",
 				fontWeight: 400,
 				padding: "0 10px",

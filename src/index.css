@@ -11,11 +11,24 @@ code {
 
 html {
 	--bg-color: #181719;
+	--fg-rgb: 255, 255, 255;
+	--card-bg: #201f22;
+	--focus-color: #c4c3d0;
+	color-scheme: dark;
 	background-color: var(--bg-color);
-	color: rgb(255, 255, 255);
+	color: rgb(var(--fg-rgb));
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 	box-sizing: border-box;
+}
+
+html[data-theme="light"] {
+	--bg-color: #faf9f7;
+	--fg-rgb: 30, 29, 32;
+	--card-bg: #ffffff;
+	--focus-color: #59536b;
+	--tag-text: #29272c;
+	color-scheme: light;
 }
 
 p {
@@ -29,5 +42,18 @@ h1 {
 
 a {
 	text-decoration: none;
-	color: white;
+	color: rgb(var(--fg-rgb));
+}
+
+/* Fade theme colors without interrupting layout and reveal animations. */
+@media (prefers-reduced-motion: no-preference) {
+	html, body, a, .view-toggle, .project-year, .project-item,
+	.experience-title, .section-divider, .timeline-bar, .timeline-bar-label,
+	.timeline-bar-label strong, .timeline-axis, .timeline-months > div > span,
+	.timeline-grid span, .timeline-hover-card, .timeline-detail-category,
+	.timeline-detail .timeline-detail-title, .timeline-detail-subtitle,
+	.timeline-detail-dates, .timeline-detail-body, .skill-tag,
+	.timeline-bar::before, .timeline-bar::after, .timeline-months > div > span::after {
+		transition: color 350ms ease, background-color 350ms ease, border-color 350ms ease;
+	}
 }

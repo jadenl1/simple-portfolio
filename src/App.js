@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import "./App.css";
 
 import { LuFingerprint } from "react-icons/lu";
-import { FiBriefcase, FiPlus } from "react-icons/fi";
+import { FiBriefcase, FiList, FiPlus } from "react-icons/fi";
 import { MdOutlineFolderCopy } from "react-icons/md";
 import { PiMountainsBold } from "react-icons/pi";
 import { HiOutlineLightningBolt } from "react-icons/hi";
-import { TbHeartHandshake } from "react-icons/tb";
+import { TbHeartHandshake, TbTimeline } from "react-icons/tb";
 
 import { GoArrowUpRight } from "react-icons/go";
 
@@ -17,6 +17,9 @@ import { volunteer } from "./data/volunteer";
 import { projects } from "./data/projects";
 import { photos } from "./data/photos";
 
+import ViewTransition from "./components/ViewTransition";
+import TimelineView from "./components/TimelineView";
+import ThemeToggle from "./components/ThemeToggle";
 import Tag from "./components/Tag";
 import FadeInSection, { FadeInItem, revealGroup } from "./components/FadeInSection";
 import RotatingWord from "./components/RotatingWord";
@@ -61,6 +64,8 @@ const ExperienceRow = ({ exp }) => (
 );
 
 function OriginalView() {
+	const [view, setView] = useState("default");
+	const [hasSwitchedView, setHasSwitchedView] = useState(false);
 	const [openProject, setOpenProject] = useState(null);
 	const toggleProject = (idx) => setOpenProject(openProject === idx ? null : idx);
 	const photoTrackRef = useRef(null);
@@ -77,6 +82,7 @@ function OriginalView() {
 
 	return (
 		<div className="app" id="jaden">
+			<ThemeToggle />
 			<div className="page">
 				<motion.p
 					className="site-label"
@@ -157,8 +163,19 @@ function OriginalView() {
 					animate={{ opacity: 0.1 }}
 					transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
 				/>
-				{/* The first section sits above the fold, so it waits for the header. */}
-				<FadeInSection delay={0.5} id="experience">
+				<div className="view-toggle" data-view={view} role="group" aria-label="Portfolio view">
+                    {['default', 'timeline'].map((option) => (
+                        <button key={option} type="button" aria-pressed={view === option}
+                            onClick={() => { if (option !== view) { setHasSwitchedView(true); setView(option); } }}>
+                            {option === 'default' ? <FiList aria-hidden="true" /> : <TbTimeline aria-hidden="true" />}
+                            {option === 'default' ? 'Default' : 'Timeline'}
+                        </button>
+                    ))}
+                </div>
+                <ViewTransition view={view}>
+                {view === 'timeline' ? <TimelineView /> : <>
+                {/* The first section sits above the fold, so it waits for the header. */}
+				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0 : 0.5} id="experience">
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<FiBriefcase className="icon-inline" />
@@ -173,7 +190,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection>
+				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.12 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<HiOutlineLightningBolt className="icon-inline" />
@@ -188,7 +205,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection>
+				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.24 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<TbHeartHandshake className="icon-inline" />
@@ -203,7 +220,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider id="projects" />
-				<FadeInSection>
+				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.36 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<MdOutlineFolderCopy className="icon-inline" />
@@ -249,6 +266,9 @@ function OriginalView() {
 						))}
 					</div>
 				</FadeInSection>
+
+				</>}
+                </ViewTransition>
 
 				<Divider id="photos" />
 				<FadeInSection>

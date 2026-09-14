@@ -1,5 +1,7 @@
 export const experiences = [
 	{
+		start: "2026-05",
+		end: "2026-08",
 		company: "Microsoft",
 		role: "Software Engineer Intern",
 		details: (
@@ -10,6 +12,8 @@ export const experiences = [
 		),
 	},
 	{
+		start: "2021-12",
+		end: "2023-05",
 		company: "University of Maryland, Baltimore County",
 		role: "Undergraduate Research Assistant",
 		details: (

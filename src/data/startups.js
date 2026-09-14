@@ -1,5 +1,7 @@
 export const startups = [
 	{
+		start: "2022-08",
+		end: "2026-08",
 		company: "NitesOut",
 		role: "Cofounder, Creative + Technical Director",
 		details: (
@@ -12,6 +14,8 @@ export const startups = [
 		),
 	},
 	{
+		start: "2025-05",
+		end: "2025-10",
 		company: "Teryn",
 		role: "Founder, AI Solutions Consulting",
 		details: (

@@ -1,5 +1,7 @@
 export const projects = [
 	{
+		start: "2026-04",
+		end: "2026-06",
 		title: "x402 Agentic AI Payment Gateway",
 		year: 2026,
 		skills: "Node, Express, AWS Fargate, ElastiCache, Twilio",
@@ -26,6 +28,8 @@ export const projects = [
 		),
 	},
 	{
+		start: "2025-04",
+		end: "2025-05",
 		title: "V2X Integrated Traffic Relief Simulation",
 		year: 2025,
 		skills: "Python, SUMO, Scikit-Learn, TensorFlow",
@@ -52,6 +56,8 @@ export const projects = [
 		),
 	},
 	{
+		start: "2025-01",
+		end: "2025-02",
 		title: "Cloud Native MRI-Scan Anomaly Detection Pipeline",
 		year: 2025,
 		skills: "AWS, SageMaker, S3, Lambda, React",
@@ -72,6 +78,8 @@ export const projects = [
 		),
 	},
 	{
+		start: "2023-07",
+		end: "2024-10",
 		title: "NitesOut Event Discovery Platform",
 		year: 2024,
 		skills: "Pandas, Scikit-Surprise, React, Express, Django, GCP",
@@ -97,6 +105,8 @@ export const projects = [
 		),
 	},
 	{
+		start: "2022-01",
+		end: "2022-03",
 		title: "Techtionary: Documentation Platform for Computer Science Terms",
 		year: 2022,
 		skills: "React, Node, Firebase",
@@ -128,6 +138,8 @@ export const projects = [
 		),
 	},
 	{
+		start: "2021-10",
+		end: "2021-10",
 		title: "Crypto-Currency Public Connotation AI Using Twitter API & Sentiment Analysis",
 		year: 2021,
 		skills: "Python, NLP",
