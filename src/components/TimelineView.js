@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { FiBriefcase } from 'react-icons/fi';
+import { FiBriefcase, FiCalendar } from 'react-icons/fi';
 import { MdOutlineSchool, MdOutlineFolderCopy } from 'react-icons/md';
 import { HiOutlineLightningBolt } from 'react-icons/hi';
 import { TbHeartHandshake } from 'react-icons/tb';
@@ -148,19 +148,35 @@ function HoverCard({ item, point }) {
 export default function TimelineView() {
     const [hover, setHover] = useState(null);
     const scrollRef = useRef(null);
+    const now = new Date();
+    const currentMonthIndex = monthIndex(`${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}`);
+    const jumpToToday = () => {
+        const scroll = scrollRef.current;
+        if (!scroll) return;
+        const clampedMonth = Math.max(origin, Math.min(currentMonthIndex, end - 1));
+        const target = ((clampedMonth - origin) / span) * scroll.scrollWidth - scroll.clientWidth / 2;
+        scroll.scrollTo({ left: Math.max(0, Math.min(target, scroll.scrollWidth - scroll.clientWidth)), behavior: 'smooth' });
+    };
     return (
         <section id="timeline" className="timeline" aria-label="Portfolio timeline">
+            <div className="timeline-controls">
+                <button type="button" className="timeline-today-button" onClick={jumpToToday}>
+                    <FiCalendar aria-hidden="true" />
+                    Today
+                </button>
+            </div>
             <div onScroll={() => setHover(null)} ref={scrollRef} className="timeline-scroll" tabIndex={0} role="region" aria-label="Timeline chart; scroll horizontally to explore years">
-                <div className="timeline-chart" style={{ "--timeline-width": `${(span / 12) * 100}%`, "--timeline-columns": yearColumns }}>
+                <div className="timeline-chart" style={{ "--timeline-width": `${(span / 12) * 100}%`, "--timeline-mobile-width": `${(span / 6) * 100}%`, "--timeline-columns": yearColumns }}>
                     <div className="timeline-axis">
                         {years.map(year => <span key={year}>{year}</span>)}
                     </div>
                     <div className="timeline-months" aria-hidden="true">
                         {years.map(year => (
                             <div key={year} style={{ gridTemplateColumns: `repeat(${yearMonths(year).length}, 1fr)` }}>
-                                {yearMonths(year).map(month => (
-                                    <span key={month}><span className="timeline-month-letter">{'JFMAMJJASOND'[month]}</span></span>
-                                ))}
+                                {yearMonths(year).map((month, index) => {
+                                    const absoluteMonth = Math.max(origin, year * 12) + index;
+                                    return <span key={month} className={absoluteMonth === currentMonthIndex ? 'timeline-current-month' : undefined}><span className="timeline-month-letter">{'JFMAMJJASOND'[month]}</span></span>;
+                                })}
                             </div>
                         ))}
                     </div>

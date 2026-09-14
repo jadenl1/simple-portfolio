@@ -28,8 +28,8 @@ html[data-theme="light"] {
 	--bg-color-rgb: 250, 249, 247;
 	--fg-rgb: 30, 29, 32;
 	--card-bg: #ffffff;
-	--focus-color: #59536b;
 	--tag-text: #29272c;
+	--focus-color: #59536b;
 	color-scheme: light;
 }
 

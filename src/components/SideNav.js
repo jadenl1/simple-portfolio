@@ -26,11 +26,8 @@ const allItems = [about, ...sections, timeline, ...ending];
 export default function SideNav({ view }) {
     const items = view === "timeline" ? timelineItems : defaultItems;
     const [active, setActive] = useState("about");
-    const [hidden, setHidden] = useState(false);
     useEffect(() => {
         let frame;
-        let previousY = Math.max(0, window.scrollY);
-        let scrollDistance = 0;
         const update = () => {
             frame = undefined;
             const targets = items.map(item => document.getElementById(item.id)).filter(Boolean);
@@ -44,19 +41,6 @@ export default function SideNav({ view }) {
             if (current) setActive(current);
         };
         const schedule = () => {
-            const currentY = Math.max(0, window.scrollY);
-            const delta = currentY - previousY;
-            previousY = currentY;
-            if (currentY <= 24) {
-                scrollDistance = 0;
-                setHidden(false);
-            } else if (delta) {
-                scrollDistance = Math.sign(delta) === Math.sign(scrollDistance) ? scrollDistance + delta : delta;
-                if (Math.abs(scrollDistance) >= 8) {
-                    setHidden(scrollDistance > 0);
-                    scrollDistance = 0;
-                }
-            }
             if (frame === undefined) frame = requestAnimationFrame(update);
         };
         window.addEventListener("scroll", schedule, { passive: true });
@@ -72,7 +56,7 @@ export default function SideNav({ view }) {
         };
     }, [items]);
 
-    return <nav className="side-nav" data-scroll-hidden={hidden} aria-label="Page sections">
+    return <nav className="side-nav" aria-label="Page sections">
         {allItems.map(({ id, label, Icon }) => {
             const visible = items.some(item => item.id === id);
             const goToSection = event => {
