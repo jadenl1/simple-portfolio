@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { LiquidGlass } from "quick-liquid/react";
 import { LuFingerprint } from "react-icons/lu";
 import { FiBriefcase } from "react-icons/fi";
 import { MdOutlineFolderCopy } from "react-icons/md";
@@ -23,27 +22,10 @@ const defaultItems = [about, ...sections, ...ending];
 const timeline = { id: "timeline", label: "Timeline", Icon: TbTimeline };
 const timelineItems = [about, timeline, ...ending];
 const allItems = [about, ...sections, timeline, ...ending];
-const mobileGlassConfig = {
-    material: "clear",
-    borderRadius: 999,
-    blur: 2,
-    tintOpacity: 0.1,
-    refractionStrength: 16,
-    chromaticAberration: 0.08,
-    edgeHighlight: 0,
-    specularStrength: 0,
-    elevation: 0,
-};
 
 export default function SideNav({ view }) {
     const items = view === "timeline" ? timelineItems : defaultItems;
     const [active, setActive] = useState("about");
-    const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && window.innerWidth <= 600);
-    useEffect(() => {
-        const update = () => setIsMobile(window.innerWidth <= 600);
-        window.addEventListener("resize", update);
-        return () => window.removeEventListener("resize", update);
-    }, []);
     useEffect(() => {
         let frame;
         const update = () => {
@@ -74,8 +56,7 @@ export default function SideNav({ view }) {
         };
     }, [items]);
 
-    return <LiquidGlass as="nav" className="side-nav" aria-label="Page sections" active={isMobile}
-        config={mobileGlassConfig} animateIn={false}>
+    return <nav className="side-nav" aria-label="Page sections">
         {allItems.map(({ id, label, Icon }) => {
             const visible = items.some(item => item.id === id);
             const goToSection = event => {
@@ -91,5 +72,5 @@ export default function SideNav({ view }) {
             </div>;
         })}
         <div className="side-nav-slot side-nav-theme" style={{ "--entrance-delay": "520ms" }}><ThemeToggle /></div>
-    </LiquidGlass>;
+    </nav>;
 }
