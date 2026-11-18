@@ -67,8 +67,31 @@ function OriginalView() {
 	const [view, setView] = useState("default");
 	const [hasSwitchedView, setHasSwitchedView] = useState(false);
 	const [openProject, setOpenProject] = useState(null);
+	const [focusedSection, setFocusedSection] = useState(null);
+	const sectionClass = (id) => `focus-section${focusedSection && focusedSection !== id ? " section-dimmed" : ""}`;
 	const toggleProject = (idx) => setOpenProject(openProject === idx ? null : idx);
 	const photoTrackRef = useRef(null);
+
+	useEffect(() => {
+		if (!focusedSection) return;
+		const clear = () => setFocusedSection(null);
+		const onKeyDown = (event) => {
+			if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) clear();
+		};
+		const onPointerDown = (event) => {
+			if (event.clientX >= document.documentElement.clientWidth) clear();
+		};
+		window.addEventListener("wheel", clear, { passive: true });
+		window.addEventListener("touchmove", clear, { passive: true });
+		window.addEventListener("keydown", onKeyDown);
+		window.addEventListener("pointerdown", onPointerDown);
+		return () => {
+			window.removeEventListener("wheel", clear);
+			window.removeEventListener("touchmove", clear);
+			window.removeEventListener("keydown", onKeyDown);
+			window.removeEventListener("pointerdown", onPointerDown);
+		};
+	}, [focusedSection]);
 
 	// Some browsers occasionally fail to start an infinite CSS animation on
 	// first paint. Restarting it on mount guarantees the scroll begins.
@@ -82,7 +105,7 @@ function OriginalView() {
 
 	return (
 		<div className="app" id="jaden">
-			<SideNav view={view} />
+			<SideNav view={view} onSelect={setFocusedSection} />
 			<div className="page">
 				<motion.p
 					className="site-label"
@@ -93,7 +116,7 @@ function OriginalView() {
 					leonardjaden.
 					<RotatingWord />
 				</motion.p>
-				<div className="page-header" id="about">
+				<div className={`page-header ${sectionClass("about")}`} id="about">
 					<motion.div
 						className="section-title"
 						initial={{ opacity: 0, y: 20 }}
@@ -163,9 +186,9 @@ function OriginalView() {
 					animate={{ opacity: 0.1 }}
 					transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
 				/>
-				<div className="view-toggle" data-view={view} role="group" aria-label="Portfolio view">
+				<div className="view-toggle" data-view={view} role="group" aria-label="Portfolio view" hidden>
                     {['default', 'timeline'].map((option) => (
-                        <button key={option} type="button" aria-pressed={view === option}
+                        <button key={option} type="button" aria-pressed={view === option} disabled={option === 'timeline'}
                             onClick={() => { if (option !== view) { setHasSwitchedView(true); setView(option); } }}>
                             {option === 'default' ? <FiList aria-hidden="true" /> : <TbTimeline aria-hidden="true" />}
                             {option === 'default' ? 'Default' : 'Timeline'}
@@ -175,7 +198,7 @@ function OriginalView() {
                 <ViewTransition view={view}>
                 {view === 'timeline' ? <TimelineView /> : <>
                 {/* The first section sits above the fold, so it waits for the header. */}
-				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0 : 0.5} id="experience">
+				<FadeInSection className={sectionClass("experience")} revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0 : 0.5} id="experience">
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<FiBriefcase className="icon-inline" />
@@ -190,7 +213,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection id="startups" revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.12 : 0}>
+				<FadeInSection className={sectionClass("startups")} id="startups" revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.12 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<HiOutlineLightningBolt className="icon-inline" />
@@ -205,7 +228,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection id="community" revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.24 : 0}>
+				<FadeInSection className={sectionClass("community")} id="community" revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.24 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<TbHeartHandshake className="icon-inline" />
@@ -219,8 +242,8 @@ function OriginalView() {
 					</div>
 				</FadeInSection>
 
-				<Divider id="projects" />
-				<FadeInSection revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.36 : 0}>
+				<Divider />
+				<FadeInSection id="projects" className={sectionClass("projects")} revealOnMount={hasSwitchedView} delay={hasSwitchedView ? 0.36 : 0}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<MdOutlineFolderCopy className="icon-inline" />
@@ -270,8 +293,8 @@ function OriginalView() {
 				</>}
                 </ViewTransition>
 
-				<Divider id="photos" />
-				<FadeInSection>
+				<Divider />
+				<FadeInSection id="photos" className={sectionClass("photos")}>
 					<div className="page-section">
 						<FadeInItem className="section-title">
 							<PiMountainsBold className="icon-inline" />
@@ -290,7 +313,7 @@ function OriginalView() {
 				</FadeInSection>
 
 				<Divider />
-				<FadeInSection>
+				<FadeInSection className={sectionClass("footer")}>
 					<div className="page-section" id="footer">
 						<FadeInItem as="p">
 							If you would like to get in touch, feel free to reach out via email

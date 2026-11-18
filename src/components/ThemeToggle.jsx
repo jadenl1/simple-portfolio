@@ -16,7 +16,7 @@ export default function ThemeToggle() {
 
     useLayoutEffect(() => {
         document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "light" ? "#faf9f7" : "#181719");
+        document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "light" ? "#faf9f7" : "#101012");
         try {
             localStorage.setItem("portfolio-theme", theme);
         } catch {
@@ -26,10 +26,11 @@ export default function ThemeToggle() {
 
     const label = `Switch to ${theme === "dark" ? "light" : "dark"} mode`;
     return (
-        <button className="theme-toggle" data-theme={theme} type="button" aria-label={label} title={label}
+        <button className="theme-toggle" data-theme={theme} type="button" aria-label={label}
             onClick={() => setTheme(current => current === "dark" ? "light" : "dark")}>
             <FiSun className="theme-icon theme-icon-sun" aria-hidden="true" />
             <FiMoon className="theme-icon theme-icon-moon" aria-hidden="true" />
+            <span className="side-nav-label" aria-hidden="true">{label}</span>
         </button>
     );
 }

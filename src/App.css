@@ -13,6 +13,12 @@
 	margin-bottom: 150px;
 }
 
+.focus-section { transition: opacity 300ms ease; }
+.section-dimmed { opacity: 0.25; }
+@media (prefers-reduced-motion: reduce) {
+	.focus-section { transition: none; }
+}
+
 h1,
 h2,
 h3,
